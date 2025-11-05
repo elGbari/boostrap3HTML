@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Proyecto — Apréndemas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --bg-top:#071028;
+        --bg-bottom:#0f1724;
+        --card-bg:rgba(255,255,255,0.02);
+        --accent:#FFD166;
+        --muted:#9fb3c8;
+      }
+
+      body{
+        font-family:'Montserrat',sans-serif;
+        background:linear-gradient(180deg,var(--bg-top) 0%,var(--bg-bottom) 100%);
+        color:#e6f0fb;
+        min-height:100vh;
+        -webkit-font-smoothing:antialiased;
+      }
+
+      .navbar{
+        background:linear-gradient(90deg,rgba(7,18,40,0.92),rgba(12,20,33,0.92));
+        box-shadow:0 8px 30px rgba(2,6,23,0.6);
+      }
+      .navbar-brand{
+        font-family:'Playfair Display',serif;
+        font-weight:700;
+        color:var(--accent)!important;
+        display:flex;align-items:center;
+      }
+      .navbar-brand img{height:44px;margin-right:10px;border-radius:6px;box-shadow:0 6px 20px rgba(0,0,0,0.45);}
+
+      h1,h2,h3,h4{font-family:'Playfair Display',serif;}
+      .section-title{color:var(--accent);margin-top:30px;font-size:2.8rem;font-weight:700;}
+      .section-subtitle{color:var(--muted);font-size:1.15rem;line-height:1.8;}
+
+      /* Tarjetas mejoradas */
+      .card{
+        background:linear-gradient(135deg,rgba(255,209,102,0.05),rgba(255,209,102,0.02));
+        border:1px solid rgba(255,209,102,0.15);
+        border-radius:16px;
+        overflow:hidden;
+        transition:all 0.3s cubic-bezier(.2,.8,.2,1);
+        height:100%;
+      }
+      .card:hover{
+        transform:translateY(-10px) scale(1.02);
+        box-shadow:0 20px 40px rgba(255,209,102,0.2);
+        border-color:rgba(255,209,102,0.4);
+      }
+      .card-img-top{
+        height:220px;
+        object-fit:cover;
+        transition:transform 0.3s ease;
+      }
+      .card:hover .card-img-top{transform:scale(1.05);}
+      
+      .card-body{
+        padding:1.5rem;
+        display:flex;
+        flex-direction:column;
+      }
+      .card-body h5{
+        color:var(--accent);
+        font-size:1.3rem;
+        margin-bottom:12px;
+        font-weight:600;
+      }
+      .card-text{
+        color:#e6f0fb;
+        font-size:0.95rem;
+        line-height:1.6;
+        margin-bottom:15px;
+        flex-grow:1;
+      }
+      
+      /* Lista de especificaciones */
+      .specs-list{
+        list-style:none;
+        padding:0;
+        margin:15px 0;
+        background:rgba(255,209,102,0.05);
+        border-radius:8px;
+        padding:12px 15px;
+      }
+      .specs-list li{
+        color:#9fb3c8;
+        font-size:0.9rem;
+        margin-bottom:6px;
+        padding-left:20px;
+        position:relative;
+      }
+      .specs-list li:before{
+        content:"▸";
+        color:var(--accent);
+        position:absolute;
+        left:0;
+        font-weight:bold;
+      }
+
+      /* Botón de compra */
+      .btn-product{
+        background:linear-gradient(90deg,var(--accent),#ffd88a);
+        border:none;
+        color:#071226;
+        font-weight:600;
+        padding:10px 20px;
+        border-radius:8px;
+        text-decoration:none;
+        display:inline-block;
+        text-align:center;
+        transition:all 0.3s ease;
+        box-shadow:0 4px 15px rgba(255,209,102,0.3);
+      }
+      .btn-product:hover{
+        transform:translateY(-2px);
+        box-shadow:0 6px 20px rgba(255,209,102,0.5);
+        color:#071226;
+      }
+
+      /* Tarjetas de acción especiales */
+      .action-card{
+        transition:all 0.4s cubic-bezier(.2,.8,.2,1);
+      }
+      .action-card:hover{
+        transform:translateY(-15px) scale(1.05);
+        box-shadow:0 25px 50px rgba(255,209,102,0.3);
+        border-color:rgba(255,209,102,0.6) !important;
+      }
+      .action-card .card-body{
+        transition:all 0.3s ease;
+      }
+      .action-card:hover .card-body > div:first-child{
+        animation:pulse 0.6s ease-in-out;
+      }
+      @keyframes pulse{
+        0%, 100%{transform:scale(1);}
+        50%{transform:scale(1.15);}
+      }
+
+      /* Header del cliente */
+      .client-header{
+        background:linear-gradient(135deg,rgba(255,209,102,0.1),rgba(255,209,102,0.05));
+        border:2px solid rgba(255,209,102,0.2);
+        border-radius:20px;
+        padding:40px 30px;
+        margin-bottom:50px;
+        box-shadow:0 10px 40px rgba(0,0,0,0.3);
+      }
+
+      footer{
+        border-top:1px solid rgba(255,209,102,0.1);
+        color:var(--muted);
+        padding:30px 0;
+        text-align:center;
+        margin-top:60px;
+      }
+      
+      @media (max-width:767px){
+        .card-img-top{height:180px;}
+        .section-title{font-size:2rem;}
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img src="img/logo.jpg" alt="AW Sync Logo"> AW Sync
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Proyectos.html">Proyectos</a></li>
+            <li class="nav-item"><a class="nav-link" href="Sedes.html">Sedes</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Encabezado Principal -->
+    <section class="container my-5">
+      <!-- Información del Proyecto CloudMatrix -->
+      <div id="projectInfo" style="background:linear-gradient(135deg, rgba(255,209,102,0.12), rgba(255,209,102,0.06));border:2px solid rgba(255,209,102,0.35);border-radius:20px;padding:35px 40px;margin-bottom:40px;box-shadow:0 10px 40px rgba(0,0,0,0.3);opacity:0;transition:opacity 0.6s ease-in-out;">
+        <div style="text-align:center;">
+          <h1 style="color:#FFD166;font-family:'Playfair Display',serif;font-size:2.5rem;margin-bottom:12px;">AW Sync CloudMatrix</h1>
+          <div style="width:60px;height:2px;background:#FFD166;margin:0 auto 20px;"></div>
+          <p style="color:#e6f0fb;font-size:1.05rem;line-height:1.8;max-width:1000px;margin:0 auto;">
+            El objetivo principal de este proyecto es expandir el alcance de <strong style="color:#FFD166;">AW Sync</strong> más allá del sector automotriz. Queremos explorar nuevas oportunidades en el ámbito educativo para contribuir al desarrollo y modernización de institutos y centros educativos. A través de la implementación de soluciones innovadoras adaptadas a las necesidades específicas de la institución, se busca optimizar nuestros recursos para mejorar la calidad del proceso educativo y facilitar un entorno para el aprendizaje de la gestión del centro.
+          </p>
+        </div>
+      </div>
+
+      <!-- Información del Cliente -->
+      <div style="padding:25px 20px;margin-bottom:30px;">
+        <h2 class="text-center mb-3" style="color:#9fb3c8;font-family:'Playfair Display',serif;font-size:1.8rem;">Cliente: Apréndemas</h2>
+        <p class="text-center mx-auto" style="max-width:900px;color:#e6f0fb;font-size:1rem;line-height:1.7;">
+          <strong>Apréndemas</strong> es una institución educativa española comprometida con la excelencia académica. 
+          Nuestro proyecto consiste en modernizar completamente su infraestructura tecnológica, proporcionando 
+          equipos de alta calidad adaptados a cada nivel educativo. Garantizamos rendimiento, fiabilidad y 
+          una experiencia óptima tanto para profesores como para alumnos.
+        </p>
+      </div>
+    </section>
+
+    <!-- Modal de Introducción -->
+    <div id="introModal" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:linear-gradient(135deg, #071028 0%, #0f1724 50%, #1a2332 100%);display:flex;align-items:center;justify-content:center;z-index:10000;opacity:0;transition:opacity 0.8s ease-in-out;">
+      <div style="background:linear-gradient(135deg, rgba(7,16,40,0.95), rgba(15,23,36,0.95));padding:60px 50px;border-radius:24px;box-shadow:0 20px 80px rgba(0,0,0,0.6), 0 0 60px rgba(255,209,102,0.2);max-width:900px;width:90%;text-align:center;transform:scale(0.8);transition:transform 0.8s ease-in-out;border:2px solid rgba(255,209,102,0.3);">
+        <h1 style="color:#FFD166;font-family:'Playfair Display',serif;font-size:3rem;margin-bottom:20px;text-shadow:0 0 30px rgba(255,209,102,0.5);">AW Sync CloudMatrix</h1>
+        <div style="width:80px;height:3px;background:linear-gradient(90deg, transparent, #FFD166, transparent);margin:0 auto 30px;"></div>
+        <h3 style="color:#FFD166;font-size:1.5rem;margin-bottom:25px;font-family:'Playfair Display',serif;">Proyecto Educativo</h3>
+        <p style="color:#e6f0fb;font-size:1.15rem;line-height:1.9;text-align:justify;margin-bottom:0;">
+          El objetivo principal de este proyecto es expandir el alcance de <strong style="color:#FFD166;">AW Sync</strong> más allá del sector automotriz. Queremos explorar nuevas oportunidades en el ámbito educativo para contribuir al desarrollo y modernización de institutos y centros educativos. A través de la implementación de soluciones innovadoras adaptadas a las necesidades específicas de la institución, se busca optimizar nuestros recursos para mejorar la calidad del proceso educativo y facilitar un entorno para el aprendizaje de la gestión del centro.
+        </p>
+      </div>
+    </div>
+
+    <!-- Tarjetas de equipos -->
+    <main class="container mb-5">
+      
+      <!-- Sección de Acciones Rápidas -->
+      <div class="row g-3 mb-4">
+        <!-- Botón Presupuestos e Inventario -->
+        <div class="col-md-6">
+          <div class="card h-100" style="background:linear-gradient(135deg, rgba(255,209,102,0.12), rgba(255,209,102,0.06));border:1.5px solid rgba(255,209,102,0.35);border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,0.25);transition:all 0.3s ease;cursor:pointer;">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center text-center p-3">
+              <div style="font-size:2.5rem;margin-bottom:12px;">�</div>
+              <h4 class="card-title mb-2" style="color:#FFD166;font-size:1.4rem;font-family:'Playfair Display',serif;">Presupuestos e Inventario</h4>
+              <p class="card-text mb-3" style="color:#e6f0fb;font-size:0.95rem;">Consulta el inventario y presupuestos</p>
+              <button onclick="showBudget()" class="btn" style="background:#FFD166;color:#071028;padding:10px 28px;border-radius:10px;font-weight:600;border:none;transition:all 0.3s;font-size:0.95rem;">
+                Ver Presupuestos
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón Volver al Inicio -->
+        <div class="col-md-6">
+          <div class="card h-100" style="background:linear-gradient(135deg, rgba(159,179,200,0.12), rgba(159,179,200,0.06));border:1.5px solid rgba(159,179,200,0.35);border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,0.25);transition:all 0.3s ease;cursor:pointer;">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center text-center p-3">
+              <div style="font-size:2.5rem;margin-bottom:12px;">🏠</div>
+              <h4 class="card-title mb-2" style="color:#9fb3c8;font-size:1.4rem;font-family:'Playfair Display',serif;">Volver al Catálogo</h4>
+              <p class="card-text mb-3" style="color:#e6f0fb;font-size:0.95rem;">Regresa al catálogo de vehículos</p>
+              <a href="index.html" class="btn" style="background:#9fb3c8;color:#071028;padding:10px 28px;border-radius:10px;font-weight:600;border:none;transition:all 0.3s;text-decoration:none;font-size:0.95rem;">
+                Ir al Catálogo
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 1: EDUCACIÓN SECUNDARIA -->
+      <div style="background:rgba(255,209,102,0.05);border-radius:16px;padding:30px 20px;margin-bottom:40px;">
+        <h3 style="color:#FFD166;font-family:'Playfair Display',serif;text-align:center;margin-bottom:10px;font-size:2rem;">📚 Educación Secundaria</h3>
+        <p style="color:#9fb3c8;text-align:center;margin-bottom:30px;">Equipos para ESO y Bachillerato</p>
+        
+        <div class="row g-4 justify-content-center">
+
+          <!-- ESO -->
+          <div class="col-sm-12 col-md-6 d-flex">
+          <div class="card w-100">
+            <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=800&h=600&fit=crop" class="card-img-top" alt="ESO Chromebook">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">ESO — Acer Chromebook Plus 514</h5>
+              <p class="card-text">
+                Equipo sencillo y práctico para el uso educativo diario, ideal para navegación web, Google Drive y tareas básicas del alumnado de ESO.
+              </p>
+              <ul class="specs-list">
+                <li>AMD Ryzen 3 7320C</li>
+                <li>8 GB RAM</li>
+                <li>256 GB SSD</li>
+                <li>Pantalla 14″</li>
+                <li>Sistema operativo: ChromeOS</li>
+              </ul>
+              <a href="https://www.acer.com/es-es/chromebooks/acer-chromebook-plus-514" target="_blank" class="btn-product mt-auto">Ver Producto</a>
+            </div>
+          </div>
+        </div>
+
+          <!-- Bachillerato -->
+          <div class="col-sm-12 col-md-6 d-flex">
+          <div class="card w-100">
+            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&h=600&fit=crop" class="card-img-top" alt="Bachillerato HP">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Bachillerato — HP 15-fc0006ns</h5>
+              <p class="card-text">
+                Portátil equilibrado con gran capacidad para proyectos creativos, trabajos de presentación y tareas exigentes.
+              </p>
+              <ul class="specs-list">
+                <li>AMD Ryzen 3 7320U</li>
+                <li>8 GB RAM</li>
+                <li>512 GB SSD</li>
+                <li>Pantalla 15.6″</li>
+                <li>Windows 11</li>
+              </ul>
+              <a href="https://www.hp.com/es-es/shop/product.aspx?id=8g5z1ea" target="_blank" class="btn-product mt-auto">Ver Producto</a>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 2: CICLOS FORMATIVOS -->
+      <div style="background:rgba(255,209,102,0.05);border-radius:16px;padding:30px 20px;margin-bottom:40px;">
+        <h3 style="color:#FFD166;font-family:'Playfair Display',serif;text-align:center;margin-bottom:10px;font-size:2rem;">💻 Ciclos Formativos</h3>
+        <p style="color:#9fb3c8;text-align:center;margin-bottom:30px;">Equipos especializados para Ciclo Medio y Superior</p>
+        
+        <div class="row g-4 justify-content-center">
+          <!-- Ciclo Medio (SMX) -->
+          <div class="col-sm-12 col-md-6 d-flex">
+          <div class="card w-100">
+            <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&h=600&fit=crop" class="card-img-top" alt="SMX Ciclo Medio HP">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Ciclo Medio SMX — HP Elitebook 840 G7</h5>
+              <p class="card-text">
+                Equipo versátil para estudiantes de sistemas informáticos, preparado para virtualización, descargas y multitarea.
+              </p>
+              <ul class="specs-list">
+                <li>Intel Core i5-10210U</li>
+                <li>16 GB RAM</li>
+                <li>512 GB SSD</li>
+                <li>Pantalla 14″</li>
+                <li>Reacondicionado</li>
+              </ul>
+              <a href="https://www.hp.com/es-es/shop/list.aspx?sel=ntb&ctrl=f&fc_elitebook_series=elitebook-840" target="_blank" class="btn-product mt-auto">Ver Producto</a>
+            </div>
+          </div>
+        </div>
+
+          <!-- Ciclo Superior -->
+          <div class="col-sm-12 col-md-6 d-flex">
+          <div class="card w-100">
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&h=600&fit=crop" class="card-img-top" alt="SMX Ciclo Superior HP AI">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Ciclo Superior SMX — HP Laptop AI 15</h5>
+              <p class="card-text">
+                Ideal para programas avanzados y aplicaciones de alto rendimiento, ofreciendo gran capacidad y velocidad.
+              </p>
+              <ul class="specs-list">
+                <li>Intel Core Ultra 7 255U</li>
+                <li>32 GB RAM</li>
+                <li>1 TB SSD</li>
+                <li>Pantalla 15.6″</li>
+                <li>AI Boost FreeDOS</li>
+              </ul>
+              <a href="https://www.hp.com/es-es/shop/list.aspx?sel=ntb&fc_ai_pc=ai-pc" target="_blank" class="btn-product mt-auto">Ver Producto</a>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 3: PROFESORADO Y ADMINISTRACIÓN -->
+      <div style="background:rgba(255,209,102,0.05);border-radius:16px;padding:30px 20px;margin-bottom:40px;">
+        <h3 style="color:#FFD166;font-family:'Playfair Display',serif;text-align:center;margin-bottom:10px;font-size:2rem;">🏢 Profesorado y Administración</h3>
+        <p style="color:#9fb3c8;text-align:center;margin-bottom:30px;">Equipos de sobremesa y periféricos para el personal</p>
+        
+        <div class="row g-4 justify-content-center">
+
+        <!-- Sala de Profesorado -->
+        <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+          <div class="card w-100">
+            <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&h=600&fit=crop" class="card-img-top" alt="Sala Profesorado Epical-Q">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Sala de Profesorado — Epical-Q Pack Soho10</h5>
+              <p class="card-text">
+                Potente sobremesa que facilita la multitarea, la corrección de trabajos y la gestión de recursos simultáneos.
+              </p>
+              <ul class="specs-list">
+                <li>Intel Core i7-12700</li>
+                <li>32 GB RAM</li>
+                <li>1 TB SSD</li>
+                <li>Monitor incluido</li>
+                <li>Teclado y ratón</li>
+              </ul>
+              <a href="https://www.pccomponentes.com/epical-q-pack-soho10" target="_blank" class="btn-product mt-auto">Ver Producto</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secretaría / Dirección -->
+        <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+          <div class="card w-100">
+            <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&h=600&fit=crop" class="card-img-top" alt="Secretaria Acer Aspire XC-1780">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Secretaría / Dirección — Acer Aspire XC-1780</h5>
+              <p class="card-text">
+                Sobremesa ágil y fiable para la gestión administrativa, diseñado para ejecutar múltiples aplicaciones y documentos simultáneamente.
+              </p>
+              <ul class="specs-list">
+                <li>Intel Core i5-13400</li>
+                <li>32 GB RAM</li>
+                <li>1 TB SSD</li>
+                <li>Windows 11 Pro</li>
+                <li>WiFi integrado</li>
+              </ul>
+              <a href="https://www.acer.com/es-es/desktops/aspire/aspire-xc" target="_blank" class="btn-product mt-auto">Ver Producto</a>
+            </div>
+          </div>
+        </div>
+
+          <!-- Impresoras -->
+          <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+            <div class="card w-100">
+              <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=800&h=600&fit=crop" class="card-img-top" alt="Impresora Brother MFCL2800DW">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Impresoras — Brother MFCL2800DW</h5>
+                <p class="card-text">
+                  Multifunción láser económica y fiable con WiFi, fax e impresión a doble cara. Ideal para salas de profesores y dirección.
+                </p>
+                <ul class="specs-list">
+                  <li>Impresión láser monocromo</li>
+                  <li>Conectividad WiFi + Fax</li>
+                  <li>Doble cara automática</li>
+                  <li>Alta relación calidad-precio</li>
+                  <li>Escaneo y copia</li>
+                </ul>
+                <a href="https://www.brother.es/impresoras-y-escaneres/impresoras-laser/mfc-l2800dw" target="_blank" class="btn-product mt-auto">Ver Producto</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer>
+      <div class="container">
+        <p style="color:#FFD166;font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:10px;">Proyecto Apréndemas</p>
+        <p style="color:#9fb3c8;margin:0;">© 2025 AW Sync — Concesionario Deportivo</p>
+        <p style="color:#9fb3c8;font-size:0.9rem;margin-top:5px;">
+          <a href="index.html" style="color:#FFD166;text-decoration:none;">Volver al inicio</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Modal de Contacto -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content" style="background:linear-gradient(135deg, #071028, #0f1724);border:2px solid rgba(255,209,102,0.3);">
+          <div class="modal-header border-0" style="border-bottom:1px solid rgba(255,209,102,0.2) !important;">
+            <h3 class="modal-title" id="contactModalLabel" style="color:#FFD166;font-family:'Playfair Display',serif;font-size:2rem;">Contacto</h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar" style="filter:brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(5deg);"></button>
+          </div>
+          <div class="modal-body p-4">
+            <p style="color:#9fb3c8;font-size:1.1rem;margin-bottom:30px;">Envíanos un mensaje y nos pondremos en contacto contigo lo antes posible.</p>
+            
+            <form action="https://formspree.io/f/myzbqboa" method="POST">
+              <div class="mb-4">
+                <label for="contactEmail" class="form-label" style="color:#FFD166;font-weight:600;font-size:1.1rem;">Tu correo electrónico:</label>
+                <input type="email" name="email" class="form-control" id="contactEmail" required 
+                       style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,209,102,0.3);color:#e6f0fb;padding:12px 16px;border-radius:8px;font-size:1rem;"
+                       onfocus="this.style.borderColor='rgba(255,209,102,0.6)';this.style.boxShadow='0 0 10px rgba(255,209,102,0.2)';"
+                       onblur="this.style.borderColor='rgba(255,209,102,0.3)';this.style.boxShadow='none';">
+              </div>
+              
+              <div class="mb-4">
+                <label for="contactMessage" class="form-label" style="color:#FFD166;font-weight:600;font-size:1.1rem;">Tu mensaje:</label>
+                <textarea name="message" class="form-control" id="contactMessage" rows="5" required
+                          style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,209,102,0.3);color:#e6f0fb;padding:12px 16px;border-radius:8px;font-size:1rem;resize:vertical;"
+                          onfocus="this.style.borderColor='rgba(255,209,102,0.6)';this.style.boxShadow='0 0 10px rgba(255,209,102,0.2)';"
+                          onblur="this.style.borderColor='rgba(255,209,102,0.3)';this.style.boxShadow='none';"></textarea>
+              </div>
+              
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p style="color:#9fb3c8;margin:0;font-size:0.9rem;">También puedes contactarnos por:</p>
+                  <a href="https://www.instagram.com/awsyncgroup/" target="_blank" rel="noopener noreferrer" 
+                     style="color:#FFD166;text-decoration:none;font-weight:600;">
+                    Instagram: @awsyncgroup
+                  </a>
+                </div>
+                <button type="submit" class="btn btn-primary" style="padding:12px 40px;font-size:1.1rem;font-weight:600;">Enviar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Función para mostrar presupuesto e inventario
+      function showBudget() {
+        const budgetInfo = `
+          <div style="text-align:left;">
+            <h3 style="color:#FFD166;font-family:'Playfair Display',serif;margin-bottom:25px;text-align:center;">📊 APRENDEMAS - Presupuesto e Inventario</h3>
+            
+            <!-- Pestañas de navegación -->
+            <ul class="nav nav-tabs mb-4" id="budgetTabs" role="tablist" style="border-bottom:2px solid rgba(255,209,102,0.3);">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="inventory-tab" data-bs-toggle="tab" data-bs-target="#inventory" type="button" style="color:#9fb3c8;border:none;background:transparent;">
+                  Inventario Requerido
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="low-tab" data-bs-toggle="tab" data-bs-target="#low" type="button" style="color:#9fb3c8;border:none;background:transparent;">
+                  Presupuesto Bajo
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="normal-tab" data-bs-toggle="tab" data-bs-target="#normal" type="button" style="color:#9fb3c8;border:none;background:transparent;">
+                  Presupuesto Normal
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="high-tab" data-bs-toggle="tab" data-bs-target="#high" type="button" style="color:#9fb3c8;border:none;background:transparent;">
+                  Presupuesto Alto
+                </button>
+              </li>
+            </ul>
+
+            <!-- Contenido de las pestañas -->
+            <div class="tab-content" id="budgetTabsContent">
+              
+              <!-- INVENTARIO REQUERIDO -->
+              <div class="tab-pane fade show active" id="inventory" role="tabpanel">
+                <h4 style="color:#FFD166;margin-bottom:20px;">Inventario Requerido</h4>
+                <div style="overflow-x:auto;">
+                  <table style="width:100%;color:#e6f0fb;border-collapse:collapse;">
+                    <thead style="background:rgba(255,209,102,0.15);">
+                      <tr>
+                        <th style="padding:12px;text-align:left;color:#FFD166;border:1px solid rgba(255,209,102,0.3);">AULAS</th>
+                        <th style="padding:12px;text-align:center;color:#FFD166;border:1px solid rgba(255,209,102,0.3);">ALUMNOS/ORDENADORES</th>
+                        <th style="padding:12px;text-align:left;color:#FFD166;border:1px solid rgba(255,209,102,0.3);">SO</th>
+                        <th style="padding:12px;text-align:left;color:#FFD166;border:1px solid rgba(255,209,102,0.3);">MÁQUINAS</th>
+                        <th style="padding:12px;text-align:left;color:#FFD166;border:1px solid rgba(255,209,102,0.3);">APP OFI</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr style="background:rgba(255,209,102,0.05);">
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">CGFS</td>
+                        <td style="padding:10px;text-align:center;border:1px solid rgba(255,209,102,0.2);">20</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Windows</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Packet i Virtual</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Drive, LibreOffice</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">CGFM</td>
+                        <td style="padding:10px;text-align:center;border:1px solid rgba(255,209,102,0.2);">40</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Windows</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Packet i Virtual</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Drive, LibreOffice</td>
+                      </tr>
+                      <tr style="background:rgba(255,209,102,0.05);">
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">12 ESO</td>
+                        <td style="padding:10px;text-align:center;border:1px solid rgba(255,209,102,0.2);">240</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Chrome</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">-</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Drive</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">3 BATX</td>
+                        <td style="padding:10px;text-align:center;border:1px solid rgba(255,209,102,0.2);">60</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Windows</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">-</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Drive, LibreOffice</td>
+                      </tr>
+                      <tr style="background:rgba(255,209,102,0.05);">
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">1 PROF</td>
+                        <td style="padding:10px;text-align:center;border:1px solid rgba(255,209,102,0.2);">3</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Windows</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Packet i Virtual</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Drive, LibreOffice</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">1 E.DIRECT</td>
+                        <td style="padding:10px;text-align:center;border:1px solid rgba(255,209,102,0.2);">4</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Windows</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">-</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Drive, LibreOffice</td>
+                      </tr>
+                      <tr style="background:rgba(255,209,102,0.05);">
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">1 SECRETARIA</td>
+                        <td style="padding:10px;text-align:center;border:1px solid rgba(255,209,102,0.2);">3</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Windows</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">-</td>
+                        <td style="padding:10px;border:1px solid rgba(255,209,102,0.2);">Drive, LibreOffice</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- PRESUPUESTO BAJO -->
+              <div class="tab-pane fade" id="low" role="tabpanel">
+                <h4 style="color:#FFD166;margin-bottom:20px;">💰 Presupuesto Bajo</h4>
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">2 CFGM - 40 unidades</h5>
+                  <p><strong>Equipo:</strong> Portátil Dell Latitude 5480 14" Intel Core I5-6300u 16GB 512GB SSD Windows 10 Reacondicionado</p>
+                  <p><strong>Justificación:</strong> Es perfecte per a l'ús que li donaran en clase.</p>
+                  <p style="color:#FFD166;"><strong>239,00€ × 40 = 9.560,00€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">1 CFGS - 20 unidades</h5>
+                  <p><strong>Equipo:</strong> Portátil Alurin Flex Advance AMD Ryzen 7 5825U / 16GB / 500GB SSD / 15.6"</p>
+                  <p><strong>Justificación:</strong> Te tot lo necessari per a poder rendir tot els programes amb qualitat.</p>
+                  <p style="color:#FFD166;"><strong>424,99€ × 20 = 8.499,80€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">3 BATX - 60 unidades</h5>
+                  <p><strong>Equipo:</strong> Portátil Alurin Go Start Intel Celeron N4020/8GB/256GB SSD/15.6"</p>
+                  <p><strong>Justificación:</strong> Per a l'ús que li donaran basta.</p>
+                  <p style="color:#FFD166;"><strong>219,99€ × 60 = 13.199,40€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">12 ESO - 240 unidades</h5>
+                  <p><strong>Equipo:</strong> Portátil Lenovo 300e Chromebook 2nd Gen AMD A4-9120C/4GB/32GB eMMC/11.6" Táctil</p>
+                  <p><strong>Justificación:</strong> Executa tots el programas que utilitzaran amb un rendiment estable.</p>
+                  <p style="color:#FFD166;"><strong>195,63€ × 240 = 46.951,20€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">1 SALA DE PROFES - 3 unidades</h5>
+                  <p><strong>Equipo:</strong> Ordenador Sobremesa Lenovo ThinkCentre M720t Intel Core i5-8400/8GB/256GB SSD Reacondicionado</p>
+                  <p><strong>Justificación:</strong> És per a corregir les tasques dels alumnes.</p>
+                  <p style="color:#FFD166;"><strong>299,00€ × 3 = 897,00€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">1 EQUIP DIRECTIU - 4 unidades</h5>
+                  <p><strong>Equipo:</strong> Ordenador Sobremesa HP ProDesk 400 G6 Intel Core i3-9100/8GB/256GB SSD Reacondicionado</p>
+                  <p><strong>Justificación:</strong> Te lo necessari per a rendir en les tasques del dia a dia.</p>
+                  <p style="color:#FFD166;"><strong>214€ × 4 = 856€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">1 SECRETARIA - 3 unidades</h5>
+                  <p><strong>Equipo:</strong> Ordenador Sobremesa HP ProDesk 400 G6 Intel Core i3-9100/8GB/256GB SSD Reacondicionado</p>
+                  <p><strong>Justificación:</strong> Te lo necessari per a rendir en les tasques del dia a dia.</p>
+                  <p style="color:#FFD166;"><strong>214€ × 3 = 642€</strong></p>
+                </div>
+                <div style="background:linear-gradient(135deg, rgba(255,209,102,0.2), rgba(255,209,102,0.1));padding:20px;border-radius:12px;margin-top:25px;border:2px solid #FFD166;">
+                  <h3 style="color:#FFD166;margin:0;"><strong>TOTAL:</strong> 80.605,05€</h3>
+                </div>
+              </div>
+
+              <!-- PRESUPUESTO NORMAL -->
+              <div class="tab-pane fade" id="normal" role="tabpanel">
+                <h4 style="color:#FFD166;margin-bottom:20px;">💼 Presupuesto Normal</h4>
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">2 CFGM - 40 unidades</h5>
+                  <p><strong>Equipo:</strong> Portátil HP Elitebook 840 G7 Intel Core i5-10210U/16GB/512GB SSD/14" Reacondicionado</p>
+                  <p><strong>Justificación:</strong> És perfecte per a l'ús que li donaran en clase.</p>
+                  <p style="color:#FFD166;"><strong>383,00€ × 40 = 15.320,00€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">1 CFGS - 20 unidades</h5>
+                  <p><strong>Equipo:</strong> Portátil HP Laptop AI 15-fd2000ns 15.6" Intel Core Ultra 7 255U 32GB 1TB SSD AI Boost FreeDOS</p>
+                  <p><strong>Justificación:</strong> Te tot lo necessari per a poder rendir tot els programes amb qualitat.</p>
+                  <p style="color:#FFD166;"><strong>829,00€ × 20 = 16.580,00€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">3 BATX - 60 unidades</h5>
+                  <p><strong>Equipo:</strong> Portátil HP 15-fc0006ns AMD Ryzen 3 7320U/8GB/512GB SSD/15.6" + WIN 11</p>
+                  <p><strong>Justificación:</strong> Per a l'ús que li donaran basta.</p>
+                  <p style="color:#FFD166;"><strong>429,00€ × 60 = 25.740,00€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">12 ESO - 240 unidades</h5>
+                  <p><strong>Equipo:</strong> Portátil Acer Chromebook Plus 514 CB514-3H-R81B AMD Ryzen 3 7320C/8GB/256GB SSD/14"</p>
+                  <p><strong>Justificación:</strong> Executa tots el programas que utilitzaran amb un rendiment estable.</p>
+                  <p style="color:#FFD166;"><strong>329,00€ × 240 = 78.960,00€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">1 SALA DE PROFES - 3 unidades</h5>
+                  <p><strong>Equipo:</strong> Ordenador Sobremesa Epical-Q Pack Soho10 Intel Core i7-12700/32GB/1TB SSD + Monitor 27" + Teclado</p>
+                  <p><strong>Justificación:</strong> És per a corregir les tasques dels alumnes.</p>
+                  <p style="color:#FFD166;"><strong>1.109,90€ × 3 = 3.329,70€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">1 EQUIP DIRECTIU - 4 unidades</h5>
+                  <p><strong>Equipo:</strong> Ordenador Sobremesa Acer Aspire XC-1780 Intel Core i5-13400/32GB/1TB SSD</p>
+                  <p><strong>Justificación:</strong> Te lo necessari per a rendir en les tasques del dia a dia.</p>
+                  <p style="color:#FFD166;"><strong>579€ × 4 = 2.316€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">1 SECRETARIA - 3 unidades</h5>
+                  <p><strong>Equipo:</strong> Ordenador Sobremesa Acer Aspire XC-1780 Intel Core i5-13400/32GB/1TB SSD</p>
+                  <p><strong>Justificación:</strong> Te lo necessari per a rendir en les tasques del dia a dia.</p>
+                  <p style="color:#FFD166;"><strong>579€ × 3 = 1.737€</strong></p>
+                </div>
+                <div style="background:linear-gradient(135deg, rgba(255,209,102,0.2), rgba(255,209,102,0.1));padding:20px;border-radius:12px;margin-top:25px;border:2px solid #FFD166;">
+                  <h3 style="color:#FFD166;margin:0;"><strong>TOTAL:</strong> 143.982,70€</h3>
+                </div>
+              </div>
+
+              <!-- PRESUPUESTO ALTO -->
+              <div class="tab-pane fade" id="high" role="tabpanel">
+                <h4 style="color:#FFD166;margin-bottom:20px;">⭐ Presupuesto Alto</h4>
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">2 CFGM - 40 unidades</h5>
+                  <p><strong>Equipo:</strong> Portátil Alurin Flex Advance IA Intel Core Ultra 9 185H 15.6"/32GB/1TB/Windows 11 Pro</p>
+                  <p><strong>Justificación:</strong> És perfecte per a l'ús que li donaran en clase.</p>
+                  <p style="color:#FFD166;"><strong>1.019,99€ × 40 = 40.799,60€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">1 CFGS - 20 unidades</h5>
+                  <p><strong>Equipo:</strong> Portátil ASUS ROG Strix G16 G615JPR-S5003 16" Intel Core i7-14650HX 32GB 1TB SSD RTX 5070 8GB</p>
+                  <p><strong>Justificación:</strong> Te tot lo necessari per a poder rendir tot els programes amb qualitat.</p>
+                  <p style="color:#FFD166;"><strong>1.909,00€ × 20 = 38.180,00€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">3 BATX - 60 unidades</h5>
+                  <p><strong>Equipo:</strong> Portátil MSI Modern 15 H C13M-087XES Intel Core i7-13620H/32GB/1TB SSD/15.6"</p>
+                  <p><strong>Justificación:</strong> Per a l'ús que li donaran basta.</p>
+                  <p style="color:#FFD166;"><strong>699,99€ × 60 = 41.999,40€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">12 ESO - 240 unidades</h5>
+                  <p><strong>Equipo:</strong> Portátil HP Chromebook Plus x360 14b-cd0005ns Intel Core i3-N305/8GB/256GB eUFS/14" Táctil</p>
+                  <p><strong>Justificación:</strong> Executa tots el programas que utilitzaran amb un rendiment estable.</p>
+                  <p style="color:#FFD166;"><strong>599,99€ × 240 = 143.997,60€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">1 SALA DE PROFES - 3 unidades</h5>
+                  <p><strong>Equipo:</strong> Ordenador Sobremesa PCBYTE Arus Pc Intel Core i7-14700/64GB/4TB SSD</p>
+                  <p><strong>Justificación:</strong> És per a corregir les tasques dels alumnes.</p>
+                  <p style="color:#FFD166;"><strong>1.849,00€ × 3 = 5.547,00€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">1 EQUIP DIRECTIU - 4 unidades</h5>
+                  <p><strong>Equipo:</strong> Ordenador Sobremesa PCBYTE Horizont Pc Intel Core i5-14600/32GB/2TB SSD</p>
+                  <p><strong>Justificación:</strong> Te lo necessari per a rendir en les tasques del dia a dia.</p>
+                  <p style="color:#FFD166;"><strong>1.400€ × 4 = 5.600€</strong></p>
+                </div><hr style="border-color:rgba(255,209,102,0.2);">
+                <div class="budget-item">
+                  <h5 style="color:#FFD166;">1 SECRETARIA - 3 unidades</h5>
+                  <p><strong>Equipo:</strong> Ordenador Sobremesa PCBYTE Horizont Pc Intel Core i5-14600/32GB/2TB SSD</p>
+                  <p><strong>Justificación:</strong> Te lo necessari per a rendir en les tasques del dia a dia.</p>
+                  <p style="color:#FFD166;"><strong>1.400€ × 3 = 4.200€</strong></p>
+                </div>
+                <div style="background:linear-gradient(135deg, rgba(255,209,102,0.2), rgba(255,209,102,0.1));padding:20px;border-radius:12px;margin-top:25px;border:2px solid #FFD166;">
+                  <h3 style="color:#FFD166;margin:0;"><strong>TOTAL:</strong> 280.323,53€</h3>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <style>
+            .nav-tabs .nav-link.active {
+              color: #FFD166 !important;
+              border-bottom: 2px solid #FFD166 !important;
+              background: transparent !important;
+            }
+            .nav-tabs .nav-link:hover {
+              color: #FFD166 !important;
+            }
+            .budget-item {
+              background: rgba(255,209,102,0.05);
+              padding: 15px;
+              border-radius: 8px;
+              margin-bottom: 15px;
+              border-left: 3px solid rgba(255,209,102,0.5);
+            }
+            .budget-item h5 {
+              margin-bottom: 10px;
+            }
+            .budget-item p {
+              color: #9fb3c8;
+              margin: 5px 0;
+              font-size: 0.95rem;
+            }
+          </style>
+        `;
+
+        // Crear modal dinámico
+        const existingModal = document.getElementById('budgetModal');
+        if (existingModal) {
+          existingModal.remove();
+        }
+
+        const modalHTML = `
+          <div class="modal fade" id="budgetModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+              <div class="modal-content" style="background:linear-gradient(135deg, #071028, #0f1724);border:2px solid rgba(255,209,102,0.3);">
+                <div class="modal-header" style="border-bottom:1px solid rgba(255,209,102,0.2);">
+                  <h5 class="modal-title" style="color:#FFD166;font-family:'Playfair Display',serif;font-size:1.5rem;">📊 Presupuestos e Inventario - APRENDEMAS</h5>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="color:#e6f0fb;">
+                  ${budgetInfo}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        const modal = new bootstrap.Modal(document.getElementById('budgetModal'));
+        modal.show();
+      }
+
+      // Animación de introducción al cargar la página
+      window.addEventListener('load', function() {
+        const introModal = document.getElementById('introModal');
+        const projectInfo = document.getElementById('projectInfo');
+        const introContent = introModal.querySelector('div');
+        
+        // Mostrar modal con animación
+        setTimeout(() => {
+          introModal.style.opacity = '1';
+          introContent.style.transform = 'scale(1)';
+        }, 200);
+        
+        // Ocultar modal después de 4 segundos y mostrar info fija
+        setTimeout(() => {
+          introModal.style.opacity = '0';
+          setTimeout(() => {
+            introModal.style.display = 'none';
+            projectInfo.style.opacity = '1';
+          }, 800);
+        }, 4500);
+      });
+    </script>
+  </body>
+</html>

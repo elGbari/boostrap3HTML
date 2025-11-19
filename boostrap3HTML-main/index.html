@@ -1,0 +1,1921 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TOP VEHICULOS DEPORTIVOS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --bg-top:#071028;
+        --bg-bottom:#0f1724;
+        --card-bg:rgba(255,255,255,0.02);
+        --accent:#FFD166;
+        --muted:#9fb3c8;
+      }
+
+      /* Base */
+      body{
+        font-family: 'Montserrat', sans-serif;
+        background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+        color: #e6f0fb;
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+      }
+
+      /* Navbar */
+      .navbar{
+        background: linear-gradient(90deg, rgba(7,18,40,0.92), rgba(12,20,33,0.92));
+        box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      }
+      .navbar-brand{
+        font-family: 'Playfair Display', serif;
+        font-weight:700;
+        color: var(--accent) !important;
+        display:flex;align-items:center;
+      }
+      .navbar-brand img{
+        height:44px; width:auto; margin-right:10px; border-radius:6px; box-shadow:0 6px 20px rgba(0,0,0,0.45);
+      }
+
+      /* Carousel */
+      .carousel-item img{ height:220px; object-fit:cover; border-radius:10px; }
+      .carousel-caption{ background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15)); padding:0.6rem 1rem; border-radius:8px; }
+      .carousel-caption h3{ font-family:'Playfair Display',serif; color:var(--accent); margin-bottom:0.2rem; }
+
+      /* Cards */
+      .card{ background: var(--card-bg); border:none; border-radius:12px; color: #e6f0fb; overflow:hidden; }
+      .card-img-top{ height:200px; object-fit:cover; }
+      .card-body{ padding:1rem; }
+      .card-title{ font-family:'Playfair Display', serif; color:var(--accent); margin-bottom:0.4rem; }
+      .card-text{ color:var(--muted); }
+      .card:hover{ transform:translateY(-8px); box-shadow:0 18px 40px rgba(2,6,23,0.6); transition: all .28s cubic-bezier(.2,.8,.2,1); }
+
+      /* Buttons */
+      .btn-primary{ background: linear-gradient(90deg, var(--accent), #ffd88a); border:none; color:#071226; font-weight:600; border-radius:8px; box-shadow:0 10px 24px rgba(255,209,102,0.12); }
+      .btn-primary:hover{ transform:translateY(-2px); }
+
+      /* Search */
+      .search-container{ max-width:640px; margin:22px auto; }
+      .search-container input{ background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04); color:#e6f0fb; padding:12px 16px; border-radius:999px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.02); }
+
+      /* Footer */
+      footer{ background:transparent; border-top:1px solid rgba(255,255,255,0.03); color:var(--muted); }
+
+      /* Utilities */
+      .mt-auto{ margin-top:auto; }
+      @media (max-width:767px){
+        .carousel-item img, .card-img-top{ height:160px; }
+        .navbar-brand img{ height:36px; }
+      }
+      
+      /* Navegación rápida - Efecto hover */
+      .card[style*="cursor:pointer"]:hover{
+        transform:translateY(-8px) scale(1.02);
+        box-shadow:0 20px 50px rgba(255,209,102,0.3) !important;
+        border-color:rgba(255,209,102,0.7) !important;
+      }
+      
+      /* Búsqueda con reordenamiento */
+      #vehiculos .row{
+        display:flex;
+        flex-wrap:wrap;
+      }
+      #vehiculos .col-sm-12{
+        transition: all 0.4s ease;
+      }
+      
+      /* Socios */
+      #sociosTitle{ color:var(--accent); font-family:'Playfair Display', serif; margin-bottom:1rem; }
+      #socios .card{ background: rgba(255,255,255,0.02); border-radius:10px; }
+    
+      #socios .card img{ width:100%; height:200px; object-fit:cover; object-position:center; }
+      @media (max-width:767px){
+        #socios .col-4{ flex:0 0 30%; max-width:30%; }
+        #socios .card img{ height:150px; }
+      }
+
+      /* Animaciones avanzadas para tarjetas */
+      .card {
+        position: relative;
+        overflow: visible !important;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+
+
+
+
+
+
+
+
+      /* Mejora del efecto hover existente */
+      .card:hover {
+        transform: translateY(-12px) scale(1.03);
+        box-shadow: 
+          0 25px 50px rgba(2,6,23,0.8),
+          0 0 30px rgba(255,209,102,0.3);
+        border: 1px solid rgba(255,209,102,0.5);
+        transition: all .4s cubic-bezier(.2,.8,.2,1);
+      }
+
+
+    </style>
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="logo.jpg" alt="AW Sync Logo" class="me-2 align-text-top">
+        AW Sync
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Proyectos.html">Proyectos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Sedes.html">Sedes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contacto</a>
+          </li>
+        </ul>
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">Iniciar Sesión</button>
+          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">Registrarse</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <body>
+    <!-- Modal de bienvenida -->
+<div id="welcomeModal" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:linear-gradient(135deg, #071028 0%, #0f1724 50%, #1a2332 100%);display:flex;align-items:center;justify-content:center;z-index:9999;opacity:0;transition:opacity 0.8s ease-in-out;">
+  <div style="background:linear-gradient(135deg, rgba(7,16,40,0.95), rgba(15,23,36,0.95));padding:60px 40px;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,209,102,0.15);max-width:90vw;width:85%;text-align:center;transform:scale(0.8);transition:transform 0.8s ease-in-out;border:1px solid rgba(255,209,102,0.2);">
+    <h1 style="margin-bottom:30px;font-size:3.5rem;color:#FFD166;font-weight:bold;text-shadow:0 0 20px rgba(255,209,102,0.4);font-family:'Playfair Display',serif;">Bienvenidos a AW Sync</h1>
+    <div style="display:flex;gap:30px;justify-content:center;flex-wrap:wrap;margin-top:40px;">
+      <div style="background:linear-gradient(135deg, rgba(255,209,102,0.15), rgba(255,209,102,0.08));border-radius:16px;padding:30px;width:45%;min-width:300px;box-shadow:0 10px 30px rgba(0,0,0,0.4);border:1px solid rgba(255,209,102,0.3);transform:translateY(0);transition:transform 0.3s ease;">
+        <h2 style="color:#FFD166;font-size:2rem;margin-bottom:15px;font-family:'Playfair Display',serif;">Catálogo de Vehículos</h2>
+        <p style="color:#9fb3c8;font-size:1.2rem;line-height:1.6;">Explora nuestra selección exclusiva de autos deportivos y encuentra el vehículo ideal para ti.</p>
+      </div>
+      <div style="background:linear-gradient(135deg, rgba(255,209,102,0.15), rgba(255,209,102,0.08));border-radius:16px;padding:30px;width:45%;min-width:300px;box-shadow:0 10px 30px rgba(0,0,0,0.4);border:1px solid rgba(255,209,102,0.3);transform:translateY(0);transition:transform 0.3s ease;">
+        <h2 style="color:#FFD166;font-size:2rem;margin-bottom:15px;font-family:'Playfair Display',serif;">Proyecto "Aprendemas"</h2>
+        <p style="color:#9fb3c8;font-size:1.2rem;line-height:1.6;">Descubre nuestro proyecto educativo para aprender más sobre movilidad y tecnología automotriz.</p>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Carrusel -->
+    <div id="carouselVehiculos" class="carousel slide mb-4" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselVehiculos" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#carouselVehiculos" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#carouselVehiculos" data-bs-slide-to="2"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://rspremiumcar.com/wp-content/uploads/2024/12/40543ad341c7ad9b85737cf1254c2d0f-474.jpg" class="d-block w-100" alt="BMW M3 Touring">
+          <div class="carousel-caption">
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://rspremiumcar.com/wp-content/uploads/2025/01/40543ad341c7ad9b85737cf1254c2d0f-515.jpg" class="d-block w-100" alt="Audi RS7 ABT">
+          <div class="carousel-caption">
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://rspremiumcar.com/wp-content/uploads/2024/07/IMG_4341-scaled.jpg" class="d-block w-100" alt="Porsche 911 GT3-RS">
+          <div class="carousel-caption">
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselVehiculos" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselVehiculos" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+
+    <!-- Sección de navegación rápida -->
+    <div class="container my-5">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <a href="#vehiculos" class="text-decoration-none">
+            <div class="card shadow-lg" style="background:linear-gradient(135deg, rgba(255,209,102,0.15), rgba(255,209,102,0.08));border:2px solid rgba(255,209,102,0.4);transition:all 0.3s ease;cursor:pointer;">
+              <div class="card-body text-center py-5">
+                <h2 class="card-title" style="color:#FFD166;font-family:'Playfair Display',serif;font-size:2.5rem;margin-bottom:15px;">Catálogo de Vehículos</h2>
+                <p class="card-text" style="color:#9fb3c8;font-size:1.2rem;">Explora nuestra selección exclusiva de autos deportivos</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a href="Proyectos.html" class="text-decoration-none">
+            <div class="card shadow-lg" style="background:linear-gradient(135deg, rgba(255,209,102,0.15), rgba(255,209,102,0.08));border:2px solid rgba(255,209,102,0.4);transition:all 0.3s ease;cursor:pointer;">
+              <div class="card-body text-center py-5">
+                <h2 class="card-title" style="color:#FFD166;font-family:'Playfair Display',serif;font-size:2.5rem;margin-bottom:15px;">Proyecto "Aprendemas"</h2>
+                <p class="card-text" style="color:#9fb3c8;font-size:1.2rem;">Descubre nuestro proyecto educativo sobre movilidad</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container my-4">
+      <!-- Barra de búsqueda -->
+      <div class="search-container">
+        <input type="text" id="searchInput" class="form-control" placeholder="Buscar vehículos...">
+      </div>
+
+      <!-- Sección principal con Cards: 2 filas de 3 tarjetas (total 6) -->
+      <main class="my-5" id="vehiculos">
+        <div class="row g-4">
+          <!-- Fila 1 -->
+          <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+            <div class="card shadow-sm w-100">
+              <img src="https://rspremiumcar.com/wp-content/uploads/2025/05/40543ad341c7ad9b85737cf1254c2d0f-185.jpg" class="card-img-top" alt="BMW M3 Touring">
+              <div class="card-body text-center d-flex flex-column">
+                <h5 class="card-title">BMW M3 TOURING</h5>
+                <p class="card-text">Potencia y elegancia en formato familiar</p>
+                <div class="mt-auto">
+                  <a href="#" class="btn btn-primary">Más información</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+            <div class="card shadow-sm w-100">
+              <img src="https://rspremiumcar.com/wp-content/uploads/2022/08/IMG_E6323-scaled.jpg" class="card-img-top" alt="Audi RS7 SPORTBACK">
+              <div class="card-body text-center d-flex flex-column">
+                <h5 class="card-title">AUDI RS7 SPORTBACK</h5>
+                <p class="card-text">Rendimiento llevado al extremo</p>
+                <div class="mt-auto">
+                  <a href="#" class="btn btn-primary">Más información</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+            <div class="card shadow-sm w-100">
+              <img src="https://rspremiumcar.com/wp-content/uploads/2024/02/IMG_E5765-scaled.jpg" class="card-img-top" alt="Audi R8">
+              <div class="card-body text-center d-flex flex-column">
+                <h5 class="card-title">AUDI R8</h5>
+                <p class="card-text">Un deportivo clásico con presencia</p>
+                <div class="mt-auto">
+                  <a href="#" class="btn btn-primary">Más información</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Fila 3 (duplicada de la fila 1, total 9 tarjetas) -->
+          <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+            <div class="card shadow-sm w-100">
+              <img src="https://rspremiumcar.com/wp-content/uploads/2023/11/IMG_E2798-scaled.jpg" class="card-img-top" alt="Mercedes-AMG GT">
+              <div class="card-body text-center d-flex flex-column">
+                <h5 class="card-title">MERCEDES-AMG GT</h5>
+                <p class="card-text">Potencia alemana en estado puro</p>
+                <div class="mt-auto">
+                  <a href="#" class="btn btn-primary">Más información</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+            <div class="card shadow-sm w-100">
+              <img src="https://rspremiumcar.com/wp-content/uploads/2024/01/IMG_E4285-scaled.jpg" class="card-img-top" alt="Audi RS6">
+              <div class="card-body text-center d-flex flex-column">
+                <h5 class="card-title">AUDI RS6</h5>
+                <p class="card-text">Pura explosividad</p>
+                <div class="mt-auto">
+                  <a href="#" class="btn btn-primary">Más información</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+            <div class="card shadow-sm w-100">
+              <img src="https://rspremiumcar.com/wp-content/uploads/2024/11/IMG_E9242-scaled.jpg" class="card-img-top" alt="Porsche 911 GT2 RS">
+              <div class="card-body text-center d-flex flex-column">
+                <h5 class="card-title">Porsche 911 GT3 RS</h5>
+                <p class="card-text">Una leyenda de la pista</p>
+                <div class="mt-auto">
+                  <a href="#" class="btn btn-primary">Más información</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fila 2 (duplicada de la fila 1) -->
+          <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+            <div class="card shadow-sm w-100">
+              <img src="https://rspremiumcar.com/wp-content/uploads/2024/11/40543ad341c7ad9b85737cf1254c2d0f-372.jpg" class="card-img-top" alt="BMW M4">
+              <div class="card-body text-center d-flex flex-column">
+                <h5 class="card-title">BMW M4</h5>
+                <p class="card-text">Potencia y elegancia en formato coupé</p>
+                <div class="mt-auto">
+                  <a href="#" class="btn btn-primary">Más información</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+            <div class="card shadow-sm w-100">
+              <img src="https://rspremiumcar.com/wp-content/uploads/2025/10/40543ad341c7ad9b85737cf1254c2d0f-425.jpg" class="card-img-top" alt="Ferrari Roma">
+              <div class="card-body text-center d-flex flex-column">
+                <h5 class="card-title">FERRARI ROMA</h5>
+                <p class="card-text">Elegancia italiana y deportividad atemporal</p>
+                <div class="mt-auto">
+                  <a href="#" class="btn btn-primary">Más información</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+            <div class="card shadow-sm w-100">
+              <img src="https://rspremiumcar.com/wp-content/uploads/2024/10/40543ad341c7ad9b85737cf1254c2d0f-97.jpg" class="card-img-top" alt="Mercedes-AMG GT 53">
+              <div class="card-body text-center d-flex flex-column">
+                <h5 class="card-title">MERCEDES-AMG GT 53</h5>
+                <p class="card-text">Coupé de cuatro puertas con alma deportiva</p>
+                <div class="mt-auto">
+                  <a href="#" class="btn btn-primary">Más información</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Modal de inicio de sesión -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background:linear-gradient(135deg, #071028, #0f1724);border:2px solid rgba(255,209,102,0.3);">
+          <div class="modal-header border-0" style="border-bottom:1px solid rgba(255,209,102,0.2) !important;">
+            <h3 class="modal-title" id="loginModalLabel" style="color:#FFD166;font-family:'Playfair Display',serif;font-size:2rem;">Iniciar Sesión</h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body p-4">
+            <form id="loginForm">
+              <div class="mb-4">
+                <label for="loginUser" class="form-label" style="color:#FFD166;font-weight:600;font-size:1.1rem;">Usuario o Correo:</label>
+                <input type="text" class="form-control" id="loginUser" required
+                       style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,209,102,0.3);color:#e6f0fb;padding:12px 16px;border-radius:8px;font-size:1rem;"
+                       placeholder="Ingresa tu usuario o correo electrónico"
+                       onfocus="this.style.borderColor='rgba(255,209,102,0.6)';this.style.boxShadow='0 0 10px rgba(255,209,102,0.2)';"
+                       onblur="this.style.borderColor='rgba(255,209,102,0.3)';this.style.boxShadow='none';">
+              </div>
+              <div class="mb-4">
+                <label for="loginPassword" class="form-label" style="color:#FFD166;font-weight:600;font-size:1.1rem;">Contraseña:</label>
+                <input type="password" class="form-control" id="loginPassword" required
+                       style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,209,102,0.3);color:#e6f0fb;padding:12px 16px;border-radius:8px;font-size:1rem;"
+                       placeholder="Ingresa tu contraseña"
+                       onfocus="this.style.borderColor='rgba(255,209,102,0.6)';this.style.boxShadow='0 0 10px rgba(255,209,102,0.2)';"
+                       onblur="this.style.borderColor='rgba(255,209,102,0.3)';this.style.boxShadow='none';">
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <a href="#" style="color:#9fb3c8;font-size:0.9rem;text-decoration:none;" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">
+                  ¿No tienes cuenta? Regístrate
+                </a>
+                <button type="submit" class="btn btn-primary" style="padding:12px 40px;font-size:1.1rem;font-weight:600;">Entrar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de registro -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background:linear-gradient(135deg, #071028, #0f1724);border:2px solid rgba(255,209,102,0.3);">
+          <div class="modal-header border-0" style="border-bottom:1px solid rgba(255,209,102,0.2) !important;">
+            <h3 class="modal-title" id="registerModalLabel" style="color:#FFD166;font-family:'Playfair Display',serif;font-size:2rem;">Registrarse</h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body p-4">
+            <form id="registerForm">
+              <div class="mb-4">
+                <label for="registerUsername" class="form-label" style="color:#FFD166;font-weight:600;font-size:1.1rem;">Nombre de Usuario:</label>
+                <input type="text" class="form-control" id="registerUsername" required
+                       style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,209,102,0.3);color:#e6f0fb;padding:12px 16px;border-radius:8px;font-size:1rem;"
+                       placeholder="Elige tu nombre de usuario"
+                       onfocus="this.style.borderColor='rgba(255,209,102,0.6)';this.style.boxShadow='0 0 10px rgba(255,209,102,0.2)';"
+                       onblur="this.style.borderColor='rgba(255,209,102,0.3)';this.style.boxShadow='none';">
+              </div>
+              <div class="mb-4">
+                <label for="registerEmail" class="form-label" style="color:#FFD166;font-weight:600;font-size:1.1rem;">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="registerEmail" required
+                       style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,209,102,0.3);color:#e6f0fb;padding:12px 16px;border-radius:8px;font-size:1rem;"
+                       placeholder="tu@email.com"
+                       onfocus="this.style.borderColor='rgba(255,209,102,0.6)';this.style.boxShadow='0 0 10px rgba(255,209,102,0.2)';"
+                       onblur="this.style.borderColor='rgba(255,209,102,0.3)';this.style.boxShadow='none';">
+              </div>
+              <div class="mb-4">
+                <label for="registerPassword" class="form-label" style="color:#FFD166;font-weight:600;font-size:1.1rem;">Contraseña:</label>
+                <input type="password" class="form-control" id="registerPassword" required
+                       style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,209,102,0.3);color:#e6f0fb;padding:12px 16px;border-radius:8px;font-size:1rem;"
+                       placeholder="Crea una contraseña segura"
+                       onfocus="this.style.borderColor='rgba(255,209,102,0.6)';this.style.boxShadow='0 0 10px rgba(255,209,102,0.2)';"
+                       onblur="this.style.borderColor='rgba(255,209,102,0.3)';this.style.boxShadow='none';">
+              </div>
+              <div class="mb-4">
+                <label for="registerPasswordConfirm" class="form-label" style="color:#FFD166;font-weight:600;font-size:1.1rem;">Confirmar Contraseña:</label>
+                <input type="password" class="form-control" id="registerPasswordConfirm" required
+                       style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,209,102,0.3);color:#e6f0fb;padding:12px 16px;border-radius:8px;font-size:1rem;"
+                       placeholder="Repite tu contraseña"
+                       onfocus="this.style.borderColor='rgba(255,209,102,0.6)';this.style.boxShadow='0 0 10px rgba(255,209,102,0.2)';"
+                       onblur="this.style.borderColor='rgba(255,209,102,0.3)';this.style.boxShadow='none';">
+              </div>
+              <div class="mb-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="registerTerms" required
+                         style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,209,102,0.3);">
+                  <label class="form-check-label" for="registerTerms" style="color:#9fb3c8;font-size:0.9rem;">
+                    Acepto los términos y condiciones de AW Sync
+                  </label>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <a href="#" style="color:#9fb3c8;font-size:0.9rem;text-decoration:none;" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">
+                  ¿Ya tienes cuenta? Inicia sesión
+                </a>
+                <button type="submit" class="btn btn-primary" style="padding:12px 40px;font-size:1.1rem;font-weight:600;">Crear Cuenta</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de información del vehículo -->
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content" style="background:linear-gradient(135deg, #071028, #0f1724);border:2px solid rgba(255,209,102,0.3);">
+          <div class="modal-header border-0" style="border-bottom:1px solid rgba(255,209,102,0.2) !important;">
+            <h3 class="modal-title" id="infoModalLabel" style="color:#FFD166;font-family:'Playfair Display',serif;font-size:2.2rem;">
+              <span id="infoTitle"></span>
+            </h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body p-4">
+            <!-- Sección superior: Imagen y datos comerciales -->
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <div class="position-relative">
+                  <img id="infoImage" src="" alt="Vehículo" class="img-fluid rounded" style="width:100%; height:300px; object-fit:cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                  <div class="position-absolute top-0 end-0 m-3">
+                    <span id="infoStock" class="badge bg-success px-3 py-2" style="font-size:0.9rem; background: linear-gradient(90deg, #28a745, #20c997) !important;">En Stock</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="h-100 d-flex flex-column justify-content-center">
+                  <div class="text-center mb-4">
+                    <h4 style="color:#FFD166; font-family:'Playfair Display',serif; margin-bottom:10px;">Precio de Venta</h4>
+                    <div class="price-container p-3" style="background: linear-gradient(135deg, rgba(255,209,102,0.1), rgba(255,209,102,0.05)); border-radius:12px; border:1px solid rgba(255,209,102,0.3);">
+                      <h2 id="infoPrice" style="color:#FFD166; font-weight:700; margin:0; font-size:2.5rem;">€XXX,XXX</h2>
+                      <p style="color:#9fb3c8; margin:0; font-size:0.9rem;">Precio nuevo de concesionario</p>
+                    </div>
+                  </div>
+                  <div class="row text-center">
+                    <div class="col-6">
+                      <div class="info-stat p-2" style="background: rgba(255,255,255,0.05); border-radius:8px;">
+                        <h6 style="color:#FFD166; margin:0;">Disponibilidad</h6>
+                        <p id="infoAvailability" style="color:#e6f0fb; margin:0; font-weight:600;">Inmediata</p>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="info-stat p-2" style="background: rgba(255,255,255,0.05); border-radius:8px;">
+                        <h6 style="color:#FFD166; margin:0;">Garantía</h6>
+                        <p style="color:#e6f0fb; margin:0; font-weight:600;">2 años</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Columna izquierda: Descripción e Historia -->
+              <div class="col-md-6 mb-4">
+                <h5 style="color:#FFD166;font-family:'Playfair Display',serif;margin-bottom:15px;">Historia y Características</h5>
+                <p id="infoDescription" style="color:#9fb3c8;line-height:1.8;font-size:1rem;"></p>
+              </div>
+              
+              <!-- Columna derecha: Especificaciones Técnicas -->
+              <div class="col-md-6 mb-4">
+                <h5 style="color:#FFD166;font-family:'Playfair Display',serif;margin-bottom:15px;">Especificaciones Técnicas</h5>
+                <div id="infoSpecs" style="color:#e6f0fb;">
+                  <!-- Las especificaciones se cargarán dinámicamente -->
+                </div>
+              </div>
+            </div>
+            
+            <!-- Sección de Logros y Trofeos -->
+            <div class="row mt-3" id="infoAchievements" style="display:none;">
+              <div class="col-12">
+                <h5 style="color:#FFD166;font-family:'Playfair Display',serif;margin-bottom:15px;">Logros y Reconocimientos</h5>
+                <div id="infoAchievementsList" style="color:#9fb3c8;line-height:1.8;">
+                  <!-- Los logros se cargarán dinámicamente -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Contacto -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content" style="background:linear-gradient(135deg, #071028, #0f1724);border:2px solid rgba(255,209,102,0.3);">
+          <div class="modal-header border-0" style="border-bottom:1px solid rgba(255,209,102,0.2) !important;">
+            <h3 class="modal-title" id="contactModalLabel" style="color:#FFD166;font-family:'Playfair Display',serif;font-size:2rem;">Contacto</h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar" style="filter:brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(5deg);"></button>
+          </div>
+          <div class="modal-body p-4">
+            <p style="color:#9fb3c8;font-size:1.1rem;margin-bottom:30px;">Envíanos un mensaje y nos pondremos en contacto contigo lo antes posible.</p>
+            
+            <form action="https://formspree.io/f/myzbqboa" method="POST">
+              <div class="mb-4">
+                <label for="contactEmail" class="form-label" style="color:#FFD166;font-weight:600;font-size:1.1rem;">Tu correo electrónico:</label>
+                <input type="email" name="email" class="form-control" id="contactEmail" required 
+                       style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,209,102,0.3);color:#e6f0fb;padding:12px 16px;border-radius:8px;font-size:1rem;"
+                       onfocus="this.style.borderColor='rgba(255,209,102,0.6)';this.style.boxShadow='0 0 10px rgba(255,209,102,0.2)';"
+                       onblur="this.style.borderColor='rgba(255,209,102,0.3)';this.style.boxShadow='none';">
+              </div>
+              
+              <div class="mb-4">
+                <label for="contactMessage" class="form-label" style="color:#FFD166;font-weight:600;font-size:1.1rem;">Tu mensaje:</label>
+                <textarea name="message" class="form-control" id="contactMessage" rows="5" required
+                          style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,209,102,0.3);color:#e6f0fb;padding:12px 16px;border-radius:8px;font-size:1rem;resize:vertical;"
+                          onfocus="this.style.borderColor='rgba(255,209,102,0.6)';this.style.boxShadow='0 0 10px rgba(255,209,102,0.2)';"
+                          onblur="this.style.borderColor='rgba(255,209,102,0.3)';this.style.boxShadow='none';"></textarea>
+              </div>
+              
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p style="color:#9fb3c8;margin:0;font-size:0.9rem;">También puedes contactarnos por:</p>
+                  <a href="https://www.instagram.com/awsyncgroup/" target="_blank" rel="noopener noreferrer" 
+                     style="color:#FFD166;text-decoration:none;font-weight:600;">
+                    Instagram: @awsyncgroup
+                  </a>
+                </div>
+                <button type="submit" class="btn btn-primary" style="padding:12px 40px;font-size:1.1rem;font-weight:600;">Enviar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script>
+      // Modal de bienvenida con transición
+      window.addEventListener('load', function() {
+        const modal = document.getElementById('welcomeModal');
+        const modalContent = modal.querySelector('div');
+        
+        // Mostrar el modal con transición
+        setTimeout(function() {
+          modal.style.opacity = '1';
+          modalContent.style.transform = 'scale(1)';
+        }, 100);
+        
+        // Ocultar el modal después de 5 segundos
+        setTimeout(function() {
+          modal.style.opacity = '0';
+          modalContent.style.transform = 'scale(0.8)';
+          setTimeout(function() {
+            modal.style.display = 'none';
+          }, 800);
+        }, 5000);
+      });
+
+      // Función de búsqueda con reordenamiento
+      document.getElementById('searchInput').addEventListener('keyup', function() {
+        const searchText = this.value.toLowerCase().trim();
+        const vehiculosContainer = document.getElementById('vehiculos').querySelector('.row');
+        const cardColumns = Array.from(document.querySelectorAll('#vehiculos .col-sm-12'));
+        
+        // Si no hay búsqueda, restaurar orden original
+        if (searchText === '') {
+          cardColumns.forEach(col => {
+            col.style.opacity = '1';
+            col.style.transform = 'scale(1)';
+            col.style.order = '';
+          });
+          return;
+        }
+        
+        // Clasificar tarjetas en coincidentes y no coincidentes
+        const matched = [];
+        const unmatched = [];
+        
+        cardColumns.forEach(col => {
+          const card = col.querySelector('.card');
+          const title = card.querySelector('.card-title').textContent.toLowerCase();
+          const text = card.querySelector('.card-text').textContent.toLowerCase();
+          
+          if (title.includes(searchText) || text.includes(searchText)) {
+            matched.push(col);
+          } else {
+            unmatched.push(col);
+          }
+        });
+        
+        // Aplicar estilos y orden
+        matched.forEach((col, index) => {
+          col.style.order = index;
+          col.style.opacity = '1';
+          col.style.transform = 'scale(1)';
+          col.style.transition = 'all 0.4s ease, order 0s';
+        });
+        
+        unmatched.forEach((col, index) => {
+          col.style.order = matched.length + index;
+          col.style.opacity = '0.2';
+          col.style.transform = 'scale(0.95)';
+          col.style.transition = 'all 0.4s ease, order 0s';
+        });
+      });
+
+      // Cambiar texto y comportamiento de los botones y añadir botón "informacion"
+      (function(){
+        // Base de datos completa de vehículos
+        const vehicleData = {
+          'BMW M3 TOURING': {
+            image: 'https://rspremiumcar.com/wp-content/uploads/2025/05/40543ad341c7ad9b85737cf1254c2d0f-185.jpg',
+            price: '€145,900',
+            stock: 'En Stock',
+            availability: 'Inmediata',
+            description: 'El BMW M3 Touring representa la perfecta fusión entre deportividad y practicidad. Es el primer M3 familiar de la historia, combinando el legendario motor S58 con la versatilidad de un wagon. Diseñado para quienes no quieren sacrificar prestaciones por espacio, este vehículo redefine el concepto de deportivo familiar.',
+            specs: {
+              'Motor': '3.0L I6 Biturbo',
+              'Potencia': '510 CV',
+              'Par motor': '650 Nm',
+              'Aceleración 0-100 km/h': '3.6 segundos',
+              'Velocidad máxima': '290 km/h (limitada electrónicamente)',
+              'Transmisión': 'Automática de 8 velocidades',
+              'Tracción': 'Integral xDrive'
+            },
+            achievements: [
+              '🏆 Primer M3 Touring de la historia de BMW M',
+              '⚡ Motor galardonado "Engine of the Year" múltiples veces',
+              '🎯 Lap time Nürburgring: 7:35 (estimado)',
+              '🌟 Mejor deportivo familiar según múltiples revistas especializadas'
+            ]
+          },
+          'AUDI RS7 SPORTBACK': {
+            image: 'https://rspremiumcar.com/wp-content/uploads/2022/08/IMG_E6323-scaled.jpg',
+            price: '€198,500',
+            stock: 'En Stock',
+            availability: '2-3 semanas',
+            description: 'El Audi RS7 Sportback es la definición de elegancia deportiva. Con su diseño coupé de cuatro puertas y su brutal motor V8 biturbo, combina lujo, tecnología y prestaciones extremas. Es el gran turismo perfecto para largas distancias a alta velocidad con todo el confort premium de Audi.',
+            specs: {
+              'Motor': '4.0L V8 TFSI Biturbo',
+              'Potencia': '600 CV',
+              'Par motor': '800 Nm',
+              'Aceleración 0-100 km/h': '3.6 segundos',
+              'Velocidad máxima': '305 km/h',
+              'Transmisión': 'Automática Tiptronic de 8 velocidades',
+              'Tracción': 'Integral quattro'
+            },
+            achievements: [
+              '🏆 World Performance Car nominado',
+              '⚡ Sistema mild-hybrid de 48V para mejor eficiencia',
+              '🎯 Dirección a las cuatro ruedas para máxima agilidad',
+              '🌟 Interior con tecnología MMI Touch Response'
+            ]
+          },
+          'AUDI R8': {
+            image: 'https://rspremiumcar.com/wp-content/uploads/2024/02/IMG_E5765-scaled.jpg',
+            price: '€215,900',
+            stock: 'Limitado',
+            availability: '4-6 semanas',
+            description: 'El Audi R8 es un superdeportivo de motor central que comparte tecnología con Lamborghini. Su motor V10 atmosférico es una obra de arte mecánica, ofreciendo una experiencia de conducción visceral. Cada detalle está diseñado para la máxima deportividad sin sacrificar el confort diario.',
+            specs: {
+              'Motor': '5.2L V10 Atmosférico',
+              'Potencia': '570 CV (V10) / 620 CV (Performance)',
+              'Par motor': '550 Nm / 580 Nm',
+              'Aceleración 0-100 km/h': '3.2 segundos',
+              'Velocidad máxima': '331 km/h',
+              'Transmisión': 'S-Tronic de 7 velocidades',
+              'Tracción': 'Integral quattro'
+            },
+            achievements: [
+              '🏆 Comparte motor con Lamborghini Huracán',
+              '⚡ Chasis de aluminio y fibra de carbono (ASF)',
+              '🎯 Lap time Nürburgring: 7:32.2 (Performance)',
+              '🌟 Uno de los últimos V10 atmosféricos en producción'
+            ]
+          },
+          'MERCEDES-AMG GT': {
+            image: 'https://rspremiumcar.com/wp-content/uploads/2023/11/IMG_E2798-scaled.jpg',
+            price: '€185,700',
+            stock: 'En Stock',
+            availability: 'Inmediata',
+            description: 'El Mercedes-AMG GT es un superdeportivo puro que combina la herencia de carreras de AMG con tecnología de vanguardia. Su motor V8 biturbo posicionado en el centro-delantero ofrece un equilibrio perfecto. Es la respuesta directa de Mercedes al Porsche 911, con un carácter más salvaje y agresivo.',
+            specs: {
+              'Motor': '4.0L V8 AMG Biturbo',
+              'Potencia': '630 CV (GT R Pro)',
+              'Par motor': '800 Nm',
+              'Aceleración 0-100 km/h': '3.2 segundos',
+              'Velocidad máxima': '318 km/h',
+              'Transmisión': 'AMG DCT de 7 velocidades',
+              'Tracción': 'Trasera'
+            },
+            achievements: [
+              '🏆 Desarrollado en Nürburgring-Nordschleife',
+              '⚡ Aerodinámica activa con alerón variable',
+              '🎯 Lap time Nürburgring: 7:04.6 (GT R Pro)',
+              '🌟 Suspensión adaptativa AMG RIDE CONTROL',
+              '🏁 Modo Race para máxima deportividad'
+            ]
+          },
+          'AUDI RS6': {
+            image: 'https://rspremiumcar.com/wp-content/uploads/2024/01/IMG_E4285-scaled.jpg',
+            price: '€152,800',
+            stock: 'En Stock',
+            availability: 'Inmediata',
+            description: 'El Audi RS6 Avant es el rey indiscutible de los deportivos familiares. Con 600 CV bajo el capó y espacio para toda la familia, este wagon alemán redefine lo que significa ser práctico y extremadamente rápido. Es la elección perfecta para quienes buscan prestaciones de superdeportivo con versatilidad diaria.',
+            specs: {
+              'Motor': '4.0L V8 TFSI Biturbo',
+              'Potencia': '600 CV',
+              'Par motor': '800 Nm',
+              'Aceleración 0-100 km/h': '3.6 segundos',
+              'Velocidad máxima': '305 km/h',
+              'Transmisión': 'Automática Tiptronic de 8 velocidades',
+              'Tracción': 'Integral quattro Sport'
+            },
+            achievements: [
+              '🏆 Icono de los super wagons desde hace 20 años',
+              '⚡ Sistema mild-hybrid de 48V',
+              '🎯 Diferencial deportivo para máxima tracción',
+              '🌟 Suspensión neumática adaptativa RS',
+              '💪 Capaz de remolcar hasta 2.1 toneladas'
+            ]
+          },
+          'Porsche 911 GT3 RS': {
+            image: 'https://rspremiumcar.com/wp-content/uploads/2024/11/IMG_E9242-scaled.jpg',
+            price: '€289,500',
+            stock: 'Reserva',
+            availability: '6-8 meses',
+            description: 'El Porsche 911 GT3 RS es el 911 más extremo para carretera. Con tecnología derivada directamente de las carreras, cada elemento está optimizado para la velocidad en pista. Su motor atmosférico de alta revolución y su aerodinámica activa lo convierten en una máquina de precisión quirúrgica.',
+            specs: {
+              'Motor': '4.0L Boxer 6 Atmosférico',
+              'Potencia': '525 CV',
+              'Par motor': '465 Nm',
+              'Aceleración 0-100 km/h': '3.2 segundos',
+              'Velocidad máxima': '312 km/h',
+              'Transmisión': 'PDK de 7 velocidades',
+              'Tracción': 'Trasera'
+            },
+            achievements: [
+              '🏆 Lap time Nürburgring: 6:56.4',
+              '⚡ Alerones activos DRS inspirados en F1',
+              '🎯 Suspensión con brazos de control tipo carreras',
+              '🌟 Llanta central de magnesio (opcional)',
+              '🏁 Motor de alta revolución hasta 9,000 RPM'
+            ]
+          },
+          'BMW M4': {
+            image: 'https://rspremiumcar.com/wp-content/uploads/2024/11/40543ad341c7ad9b85737cf1254c2d0f-372.jpg',
+            price: '€124,900',
+            stock: 'En Stock',
+            availability: '1-2 semanas',
+            description: 'El BMW M4 es el coupé deportivo por excelencia de BMW. Con su diseño agresivo y el potente motor S58 biturbo, ofrece una experiencia de conducción pura y emocionante. Es la evolución perfecta del legendario E30 M3, adaptado para la era moderna sin perder su esencia deportiva.',
+            specs: {
+              'Motor': '3.0L I6 Biturbo',
+              'Potencia': '510 CV (Competition)',
+              'Par motor': '650 Nm',
+              'Aceleración 0-100 km/h': '3.9 segundos',
+              'Velocidad máxima': '290 km/h (limitada)',
+              'Transmisión': 'Automática de 8 velocidades',
+              'Tracción': 'Trasera / Integral xDrive'
+            },
+            achievements: [
+              '🏆 Heredero del legendario BMW M3 E30',
+              '⚡ Motor S58 premiado internacionalmente',
+              '🎯 Chasis ultra rígido con fibra de carbono',
+              '🌟 Modo Drift Analyzer incluido',
+              '🏁 Versión CSL: la más ligera y extrema'
+            ]
+          },
+          'FERRARI ROMA': {
+            image: 'https://rspremiumcar.com/wp-content/uploads/2025/10/40543ad341c7ad9b85737cf1254c2d0f-425.jpg',
+            price: '€265,000',
+            stock: 'Bajo Pedido',
+            availability: '8-12 meses',
+            description: 'El Ferrari Roma es un Gran Turismo que combina la elegancia atemporal italiana con la deportividad más pura de Maranello. Su diseño está inspirado en la dolce vita de los años 60, mientras que su motor V8 biturbo ofrece prestaciones de superdeportivo. Es la perfecta síntesis entre lujo, confort y prestaciones extremas.',
+            specs: {
+              'Motor': '3.9L V8 Biturbo',
+              'Potencia': '620 CV',
+              'Par motor': '760 Nm',
+              'Aceleración 0-100 km/h': '3.4 segundos',
+              'Velocidad máxima': '320 km/h',
+              'Transmisión': 'DCT de 8 velocidades',
+              'Tracción': 'Trasera'
+            },
+            achievements: [
+              '🏆 Motor "International Engine of the Year" 4 veces consecutivas',
+              '⚡ Primer Ferrari con pantalla táctil de 8.4 pulgadas',
+              '🎯 Aerodinámica inspirada en los GT clásicos',
+              '🌟 Suspensión magnetorreológica SCM-E',
+              '🏁 Modo Manettino con 5 configuraciones dinámicas'
+            ]
+          },
+          'MERCEDES-AMG GT 53': {
+            image: 'https://rspremiumcar.com/wp-content/uploads/2024/10/40543ad341c7ad9b85737cf1254c2d0f-97.jpg',
+            price: '€138,500',
+            stock: 'En Stock',
+            availability: '2-4 semanas',
+            description: 'El Mercedes-AMG GT 53 4MATIC+ es un coupé de cuatro puertas que combina elegancia y deportividad extrema. Con su motor de seis cilindros en línea mild-hybrid y tecnología EQ Boost, ofrece prestaciones impresionantes con eficiencia mejorada. Es el equilibrio perfecto entre lujo Mercedes y la brutalidad AMG.',
+            specs: {
+              'Motor': '3.0L I6 Turbo + EQ Boost',
+              'Potencia': '435 CV + 22 CV (EQ Boost)',
+              'Par motor': '520 Nm + 250 Nm (EQ Boost)',
+              'Aceleración 0-100 km/h': '4.5 segundos',
+              'Velocidad máxima': '285 km/h',
+              'Transmisión': 'AMG SPEEDSHIFT TCT 9G',
+              'Tracción': 'Integral 4MATIC+'
+            },
+            achievements: [
+              '🏆 Primer AMG GT con motor de 6 cilindros',
+              '⚡ Sistema mild-hybrid con EQ Boost de 48V',
+              '🎯 Suspensión neumática AMG RIDE CONTROL+',
+              '🌟 Interior AMG Performance con pantallas duales',
+              '🏁 Modo RACE para máxima deportividad'
+            ]
+          }
+        };
+
+        // Actualiza los botones principales (ancla .btn.btn-primary) a "adquierelo" y les añade el comportamiento de login
+        const primaryButtons = document.querySelectorAll('.card .btn.btn-primary');
+        primaryButtons.forEach(btn => {
+          // Cambia el texto del botón principal
+          btn.textContent = 'adquierelo';
+          btn.classList.add('btn-adquierelo');
+
+          // Abre el modal de login al hacer clic
+          btn.addEventListener('click', function(e){
+            e.preventDefault();
+            const loginModalEl = document.getElementById('loginModal');
+            const loginModal = new bootstrap.Modal(loginModalEl);
+            loginModal.show();
+          });
+        });
+
+        // Insertar un botón "informacion" en cada tarjeta y conectarlo al modal de información
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+          const titleEl = card.querySelector('.card-title');
+          const title = titleEl ? titleEl.textContent.trim() : 'Vehículo';
+
+          // Crear botón de información
+          const infoBtn = document.createElement('button');
+          infoBtn.type = 'button';
+          infoBtn.className = 'btn btn-outline-light me-2 info-btn';
+          infoBtn.textContent = 'informacion';
+
+          // Buscar el contenedor de botones y añadir el infoBtn antes del botón principal
+          const btnContainer = card.querySelector('.mt-auto');
+          if (btnContainer) {
+            // Insertar al inicio del contenedor para que quede a la izquierda
+            btnContainer.insertBefore(infoBtn, btnContainer.firstChild);
+          }
+
+          // Manejar click: rellenar modal con toda la información
+          infoBtn.addEventListener('click', function(e){
+            e.preventDefault();
+            const vehicleInfo = vehicleData[title];
+            
+            if (vehicleInfo) {
+              // Título
+              document.getElementById('infoTitle').textContent = title;
+              
+              // Imagen
+              document.getElementById('infoImage').src = vehicleInfo.image;
+              document.getElementById('infoImage').alt = title;
+              
+              // Precio
+              document.getElementById('infoPrice').textContent = vehicleInfo.price;
+              
+              // Stock
+              const stockElement = document.getElementById('infoStock');
+              stockElement.textContent = vehicleInfo.stock;
+              
+              // Cambiar el estilo del badge según el stock
+              stockElement.className = 'badge px-3 py-2';
+              if (vehicleInfo.stock === 'En Stock') {
+                stockElement.style.background = 'linear-gradient(90deg, #28a745, #20c997)';
+              } else if (vehicleInfo.stock === 'Limitado') {
+                stockElement.style.background = 'linear-gradient(90deg, #ffc107, #fd7e14)';
+                stockElement.style.color = '#000';
+              } else if (vehicleInfo.stock === 'Reserva' || vehicleInfo.stock === 'Bajo Pedido') {
+                stockElement.style.background = 'linear-gradient(90deg, #dc3545, #fd5c70)';
+              }
+              
+              // Disponibilidad
+              document.getElementById('infoAvailability').textContent = vehicleInfo.availability;
+              
+              // Descripción
+              document.getElementById('infoDescription').textContent = vehicleInfo.description;
+              
+              // Especificaciones técnicas
+              const specsContainer = document.getElementById('infoSpecs');
+              specsContainer.innerHTML = '';
+              for (const [key, value] of Object.entries(vehicleInfo.specs)) {
+                const specItem = document.createElement('div');
+                specItem.style.cssText = 'background:rgba(255,209,102,0.08);padding:10px 15px;margin-bottom:8px;border-radius:6px;border-left:3px solid #FFD166;';
+                specItem.innerHTML = `<strong style="color:#FFD166;">${key}:</strong> <span style="color:#e6f0fb;">${value}</span>`;
+                specsContainer.appendChild(specItem);
+              }
+              
+              // Logros y trofeos
+              if (vehicleInfo.achievements && vehicleInfo.achievements.length > 0) {
+                document.getElementById('infoAchievements').style.display = 'block';
+                const achievementsList = document.getElementById('infoAchievementsList');
+                achievementsList.innerHTML = '';
+                vehicleInfo.achievements.forEach(achievement => {
+                  const achievementItem = document.createElement('div');
+                  achievementItem.style.cssText = 'padding:8px 0;border-bottom:1px solid rgba(255,209,102,0.1);';
+                  achievementItem.innerHTML = `<span style="font-size:1rem;">${achievement}</span>`;
+                  achievementsList.appendChild(achievementItem);
+                });
+              } else {
+                document.getElementById('infoAchievements').style.display = 'none';
+              }
+            }
+            
+            const infoModalEl = document.getElementById('infoModal');
+            const infoModal = new bootstrap.Modal(infoModalEl);
+            infoModal.show();
+          });
+        });
+      })();
+
+      // Funcionalidad de Login y Registro
+      (function() {
+        // Estado de sesión
+        let isLoggedIn = false;
+        let currentUser = null;
+
+        // Simulación de base de datos de usuarios (en aplicación real sería servidor)
+        let users = JSON.parse(localStorage.getItem('awsync_users') || '[]');
+
+        function saveUsers() {
+          localStorage.setItem('awsync_users', JSON.stringify(users));
+        }
+
+        function showAlert(message, type = 'success') {
+          const alertDiv = document.createElement('div');
+          alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+          alertDiv.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            max-width: 400px;
+            background: ${type === 'success' ? 'linear-gradient(135deg, #28a745, #20c997)' : 'linear-gradient(135deg, #dc3545, #fd7e14)'};
+            border: none;
+            color: white;
+            font-weight: 600;
+          `;
+          alertDiv.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+          `;
+          document.body.appendChild(alertDiv);
+          
+          setTimeout(() => {
+            if (alertDiv.parentNode) {
+              alertDiv.remove();
+            }
+          }, 5000);
+        }
+
+        function updateUI() {
+          const loginBtn = document.querySelector('[data-bs-target="#loginModal"]');
+          const registerBtn = document.querySelector('[data-bs-target="#registerModal"]');
+          const navbarButtonsContainer = loginBtn.parentElement;
+
+          if (isLoggedIn) {
+            navbarButtonsContainer.innerHTML = `
+              <div class="dropdown">
+                <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  <i class="fas fa-user me-1"></i> ${currentUser.username}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" style="background:#071028;border:1px solid rgba(255,209,102,0.3);">
+                  <li><a class="dropdown-item" href="#" style="color:#e6f0fb;" id="logoutBtn">Cerrar Sesión</a></li>
+                </ul>
+              </div>
+            `;
+            
+            document.getElementById('logoutBtn').addEventListener('click', logout);
+          } else {
+            navbarButtonsContainer.innerHTML = `
+              <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">Iniciar Sesión</button>
+              <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">Registrarse</button>
+            `;
+          }
+        }
+
+        function logout() {
+          isLoggedIn = false;
+          currentUser = null;
+          localStorage.removeItem('awsync_current_user');
+          showAlert('Sesión cerrada exitosamente');
+          updateUI();
+        }
+
+        // Verificar si hay una sesión activa
+        const savedUser = localStorage.getItem('awsync_current_user');
+        if (savedUser) {
+          currentUser = JSON.parse(savedUser);
+          isLoggedIn = true;
+          updateUI();
+        }
+
+        // Manejo del formulario de registro
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const username = document.getElementById('registerUsername').value.trim();
+          const email = document.getElementById('registerEmail').value.trim();
+          const password = document.getElementById('registerPassword').value;
+          const confirmPassword = document.getElementById('registerPasswordConfirm').value;
+          const termsAccepted = document.getElementById('registerTerms').checked;
+
+          // Validaciones
+          if (!username || !email || !password || !confirmPassword) {
+            showAlert('Por favor, completa todos los campos', 'danger');
+            return;
+          }
+
+          if (username.length < 3) {
+            showAlert('El nombre de usuario debe tener al menos 3 caracteres', 'danger');
+            return;
+          }
+
+          if (password.length < 6) {
+            showAlert('La contraseña debe tener al menos 6 caracteres', 'danger');
+            return;
+          }
+
+          if (password !== confirmPassword) {
+            showAlert('Las contraseñas no coinciden', 'danger');
+            return;
+          }
+
+          if (!termsAccepted) {
+            showAlert('Debes aceptar los términos y condiciones', 'danger');
+            return;
+          }
+
+          // Verificar si el usuario ya existe
+          if (users.find(user => user.username === username || user.email === email)) {
+            showAlert('El nombre de usuario o correo ya está registrado', 'danger');
+            return;
+          }
+
+          // Crear nuevo usuario
+          const newUser = {
+            id: Date.now(),
+            username: username,
+            email: email,
+            password: password, // En aplicación real se hashearia
+            registeredAt: new Date().toISOString()
+          };
+
+          users.push(newUser);
+          saveUsers();
+
+          // Iniciar sesión automáticamente
+          currentUser = { ...newUser };
+          delete currentUser.password; // No mantener la contraseña en memoria
+          isLoggedIn = true;
+          localStorage.setItem('awsync_current_user', JSON.stringify(currentUser));
+
+          showAlert(`¡Bienvenido, ${username}! Tu cuenta ha sido creada exitosamente`);
+          bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide();
+          updateUI();
+          
+          // Limpiar formulario
+          this.reset();
+        });
+
+        // Manejo del formulario de login
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const userInput = document.getElementById('loginUser').value.trim();
+          const password = document.getElementById('loginPassword').value;
+
+          if (!userInput || !password) {
+            showAlert('Por favor, completa todos los campos', 'danger');
+            return;
+          }
+
+          // Buscar usuario por username o email
+          const user = users.find(u => 
+            (u.username === userInput || u.email === userInput) && u.password === password
+          );
+
+          if (!user) {
+            showAlert('Usuario/correo o contraseña incorrectos', 'danger');
+            return;
+          }
+
+          // Iniciar sesión
+          currentUser = { ...user };
+          delete currentUser.password; // No mantener la contraseña en memoria
+          isLoggedIn = true;
+          localStorage.setItem('awsync_current_user', JSON.stringify(currentUser));
+
+          showAlert(`¡Bienvenido de vuelta, ${user.username}!`);
+          bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+          updateUI();
+          
+          // Limpiar formulario
+          this.reset();
+        });
+
+        // Actualizar UI inicial
+        updateUI();
+      })();
+
+
+    </script>
+
+    <!-- Sección Socios -->
+    <section id="socios" class="container my-5">
+      <h3 id="sociosTitle">Socios</h3>
+      <div class="row g-4 align-items-center">
+        <div class="col-sm-12 col-md-6 d-flex">
+          <div class="card shadow-sm w-100">
+            <div class="row g-0 align-items-center">
+              <div class="col-4">
+                <img src="AYMAN.jpeg" alt="Ayman" class="img-fluid rounded-start">
+              </div>
+              <div class="col-8">
+                <div class="card-body">
+                  <h5 class="card-title">Ayman</h5>
+                  <p class="card-text mb-1" style="color:#FFD166;font-weight:600;">CEO & Co-Fundador</p>
+                  <p class="card-text small">Lidera la visión estratégica de AW Sync, estableciendo alianzas clave y dirigiendo la expansión del negocio hacia nuevos sectores innovadores.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 d-flex">
+          <div class="card shadow-sm w-100">
+            <div class="row g-0 align-items-center">
+              <div class="col-4">
+                <img src="WAEL.JPG" alt="Wael" class="img-fluid rounded-start">
+              </div>
+              <div class="col-8">
+                <div class="card-body">
+                  <h5 class="card-title">Wael</h5>
+                  <p class="card-text mb-1" style="color:#FFD166;font-weight:600;">CEO & Co-Fundador</p>
+                  <p class="card-text small">Lidera la dirección técnica y operativa de AW Sync en los ámbitos tecnológico y automotriz, impulsando la excelencia operacional y la innovación continua.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Banner de Cookies Compacto y Profesional -->
+    <div id="cookieBanner" style="position: fixed; bottom: 20px; left: 20px; right: 20px; background: linear-gradient(135deg, rgba(7,16,40,0.98), rgba(15,23,36,0.98)); border: 1px solid rgba(255,209,102,0.3); border-radius: 16px; padding: 20px; z-index: 10000; display: none; backdrop-filter: blur(20px); box-shadow: 0 10px 40px rgba(0,0,0,0.5); max-width: 1000px; margin: 0 auto;">
+      <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+        
+        <!-- Contenido Principal -->
+        <div style="flex: 1; min-width: 300px;">
+          <div style="display: flex; align-items: center; gap: 15px;">
+            <div style="background: linear-gradient(135deg, #FFD166, #ffd88a); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+              🍪
+            </div>
+            <div>
+              <h6 style="color: #FFD166; margin: 0 0 6px 0; font-weight: 600; font-family: 'Montserrat', sans-serif; font-size: 1.1rem;">
+                Cookies y Privacidad
+              </h6>
+              <p style="color: #e6f0fb; margin: 0; font-size: 0.9rem; line-height: 1.4; opacity: 0.9;">
+                Usamos cookies para mejorar tu experiencia. 
+                <a href="#" id="cookiePolicyLink" style="color: #FFD166; text-decoration: none; font-weight: 500;" 
+                   onmouseover="this.style.textDecoration='underline'" 
+                   onmouseout="this.style.textDecoration='none'">Más info</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div style="display: flex; gap: 12px; align-items: center; flex-shrink: 0;">
+          
+          <!-- Botón Rechazar (Discreto) -->
+          <button id="rejectCookies" class="btn" style="
+            background: transparent; 
+            color: #9fb3c8; 
+            border: 1px solid rgba(159,179,200,0.3); 
+            padding: 8px 16px; 
+            border-radius: 8px; 
+            font-weight: 500; 
+            transition: all 0.3s ease; 
+            font-size: 0.85rem; 
+            font-family: 'Montserrat', sans-serif;" 
+                  onmouseover="
+                    this.style.background='rgba(159,179,200,0.1)'; 
+                    this.style.borderColor='rgba(159,179,200,0.5)'; 
+                    this.style.color='#e6f0fb';
+                  " 
+                  onmouseout="
+                    this.style.background='transparent'; 
+                    this.style.borderColor='rgba(159,179,200,0.3)'; 
+                    this.style.color='#9fb3c8';
+                  ">
+            Rechazar
+          </button>
+
+          <!-- Botón Aceptar (Prominente) -->
+          <button id="acceptCookies" class="btn" style="
+            background: linear-gradient(135deg, #FFD166, #ffd88a); 
+            color: #071226; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            transition: all 0.3s ease; 
+            font-size: 0.9rem; 
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 4px 12px rgba(255,209,102,0.3);" 
+                  onmouseover="
+                    this.style.transform='translateY(-2px)'; 
+                    this.style.boxShadow='0 6px 18px rgba(255,209,102,0.4)';
+                  " 
+                  onmouseout="
+                    this.style.transform='translateY(0)'; 
+                    this.style.boxShadow='0 4px 12px rgba(255,209,102,0.3)';
+                  ">
+            Aceptar
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Política de Cookies -->
+    <div id="cookiePolicyModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10002; display: none; backdrop-filter: blur(5px);">
+      <div style="display: flex; align-items: center; justify-content: center; height: 100%; padding: 20px;">
+        <div style="background: linear-gradient(135deg, rgba(7,16,40,0.98), rgba(15,23,36,0.98)); border-radius: 16px; max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; border: 2px solid rgba(255,209,102,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.7);">
+          
+          <!-- Header -->
+          <div style="padding: 30px 30px 20px 30px; border-bottom: 1px solid rgba(255,209,102,0.2);">
+            <div style="display: flex; justify-content: between; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 15px; flex: 1;">
+                <div style="background: linear-gradient(135deg, #FFD166, #ffd88a); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                  🍪
+                </div>
+                <div>
+                  <h3 style="color: #FFD166; margin: 0; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 600;">
+                    Política de Cookies
+                  </h3>
+                  <p style="color: #9fb3c8; margin: 5px 0 0 0; font-size: 0.9rem;">
+                    AW Sync - Concesionario Deportivo
+                  </p>
+                </div>
+              </div>
+              <button id="closeCookiePolicy" style="background: none; border: none; color: #9fb3c8; font-size: 1.5rem; cursor: pointer; padding: 5px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;" 
+                      onmouseover="this.style.background='rgba(159,179,200,0.1)'; this.style.color='#e6f0fb';" 
+                      onmouseout="this.style.background='none'; this.style.color='#9fb3c8';">
+                ✕
+              </button>
+            </div>
+          </div>
+
+          <!-- Contenido -->
+          <div style="padding: 30px; color: #e6f0fb; line-height: 1.6;">
+            
+            <!-- Introducción -->
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #FFD166; margin-bottom: 15px; font-size: 1.3rem; font-weight: 600;">¿Qué son las cookies?</h4>
+              <p style="margin-bottom: 15px; color: #e6f0fb; opacity: 0.9;">
+                Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas nuestro sitio web. Nos permiten recordar tus preferencias y mejorar tu experiencia de navegación en AW Sync.
+              </p>
+            </div>
+
+            <!-- Tipos de cookies -->
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #FFD166; margin-bottom: 15px; font-size: 1.3rem; font-weight: 600;">Tipos de cookies que utilizamos</h4>
+              
+              <!-- Cookies esenciales -->
+              <div style="background: rgba(255,209,102,0.05); border-left: 3px solid #FFD166; padding: 15px; margin-bottom: 15px; border-radius: 8px;">
+                <h5 style="color: #FFD166; margin-bottom: 8px; font-size: 1.1rem;">🔧 Cookies Esenciales</h5>
+                <p style="margin: 0; color: #e6f0fb; opacity: 0.9; font-size: 0.95rem;">
+                  Necesarias para el funcionamiento básico del sitio web. Incluyen autenticación, carrito de compras y preferencias de privacidad.
+                </p>
+              </div>
+
+              <!-- Cookies de análisis -->
+              <div style="background: rgba(159,179,200,0.05); border-left: 3px solid #9fb3c8; padding: 15px; margin-bottom: 15px; border-radius: 8px;">
+                <h5 style="color: #9fb3c8; margin-bottom: 8px; font-size: 1.1rem;">📊 Cookies de Análisis</h5>
+                <p style="margin: 0; color: #e6f0fb; opacity: 0.9; font-size: 0.95rem;">
+                  Nos ayudan a entender cómo interactúas con nuestro sitio para mejorarlo. Recopilan información anónima sobre páginas visitadas y tiempo de navegación.
+                </p>
+              </div>
+
+              <!-- Cookies de personalización -->
+              <div style="background: rgba(159,179,200,0.05); border-left: 3px solid #9fb3c8; padding: 15px; margin-bottom: 15px; border-radius: 8px;">
+                <h5 style="color: #9fb3c8; margin-bottom: 8px; font-size: 1.1rem;">🎯 Cookies de Personalización</h5>
+                <p style="margin: 0; color: #e6f0fb; opacity: 0.9; font-size: 0.95rem;">
+                  Permiten recordar tus preferencias de navegación, vehículos favoritos y configuraciones personalizadas para ofrecerte una experiencia única.
+                </p>
+              </div>
+            </div>
+
+            <!-- Tus derechos -->
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: #FFD166; margin-bottom: 15px; font-size: 1.3rem; font-weight: 600;">Tus derechos y control</h4>
+              <ul style="color: #e6f0fb; opacity: 0.9; padding-left: 20px;">
+                <li style="margin-bottom: 8px;">Puedes aceptar o rechazar cookies no esenciales en cualquier momento</li>
+                <li style="margin-bottom: 8px;">Tienes derecho a solicitar información sobre las cookies que almacenamos</li>
+                <li style="margin-bottom: 8px;">Puedes eliminar cookies desde la configuración de tu navegador</li>
+                <li style="margin-bottom: 8px;">Puedes cambiar tus preferencias contactándonos</li>
+              </ul>
+            </div>
+
+            <!-- Contacto -->
+            <div style="background: rgba(7,16,40,0.5); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+              <h4 style="color: #FFD166; margin-bottom: 10px; font-size: 1.1rem;">📞 ¿Necesitas más información?</h4>
+              <p style="margin: 0; color: #e6f0fb; opacity: 0.9; font-size: 0.95rem;">
+                Si tienes preguntas sobre nuestra política de cookies o quieres ejercer tus derechos de privacidad, contáctanos en: 
+                <a href="mailto:privacy@awsync.com" style="color: #FFD166; text-decoration: none; font-weight: 500;">privacy@awsync.com</a>
+              </p>
+            </div>
+
+            <!-- Botones de acción -->
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+              <button id="modalRejectCookies" class="btn" style="
+                background: transparent; 
+                color: #9fb3c8; 
+                border: 1px solid rgba(159,179,200,0.4); 
+                padding: 10px 20px; 
+                border-radius: 8px; 
+                font-weight: 500; 
+                transition: all 0.3s ease; 
+                font-size: 0.9rem;" 
+                      onmouseover="this.style.background='rgba(159,179,200,0.1)'; this.style.borderColor='rgba(159,179,200,0.6)';" 
+                      onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(159,179,200,0.4)';">
+                Solo Necesarias
+              </button>
+              
+              <button id="modalAcceptCookies" class="btn" style="
+                background: linear-gradient(135deg, #FFD166, #ffd88a); 
+                color: #071226; 
+                border: none; 
+                padding: 10px 24px; 
+                border-radius: 8px; 
+                font-weight: 600; 
+                transition: all 0.3s ease; 
+                font-size: 0.9rem;
+                box-shadow: 0 4px 15px rgba(255,209,102,0.3);" 
+                      onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(255,209,102,0.4)';" 
+                      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255,209,102,0.3)';">
+                Aceptar Todas
+              </button>
+            </div>
+
+            <!-- Última actualización -->
+            <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,209,102,0.1);">
+              <p style="color: #9fb3c8; font-size: 0.8rem; margin: 0; opacity: 0.7;">
+                Última actualización: 11 de noviembre de 2025 | © 2025 AW Sync - Concesionario Deportivo
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+  
+  <footer class="bg-dark text-white text-center p-4 mt-5" id="contacto">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <h5 style="color:#FFD166;font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:20px;">Contacto</h5>
+          <p style="color:#9fb3c8;font-size:1.1rem;margin-bottom:15px;">
+            <a href="https://www.instagram.com/awsyncgroup/" target="_blank" rel="noopener noreferrer" 
+               style="color:#FFD166;text-decoration:none;font-weight:600;">
+              Síguenos en Instagram: @awsyncgroup
+            </a>
+          </p>
+          <p style="color:#9fb3c8;">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal" 
+               style="color:#FFD166;text-decoration:none;font-weight:600;">
+              Envíanos un mensaje
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="mt-4" style="border-top:1px solid rgba(255,209,102,0.2);padding-top:20px;">
+        <p style="color:#9fb3c8;margin:0;">© 2025 Institut Barres i Ones - AW Sync Concesionario Deportivo</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script para manejar cookies -->
+  <script>
+    // Sistema de gestión de cookies
+    (function() {
+      const COOKIE_CONSENT_KEY = 'awsync_cookie_consent';
+      const cookieBanner = document.getElementById('cookieBanner');
+      const acceptBtn = document.getElementById('acceptCookies');
+      const rejectBtn = document.getElementById('rejectCookies');
+
+      // Verificar si el usuario ya ha dado su consentimiento
+      function checkCookieConsent() {
+        const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+        if (!consent) {
+          showCookieBanner();
+        } else {
+          console.log('Preferencia de cookies:', consent === 'accepted' ? 'Aceptadas' : 'Rechazadas');
+        }
+      }
+
+      // Mostrar banner de cookies con animación
+      function showCookieBanner() {
+        cookieBanner.style.display = 'block';
+        setTimeout(() => {
+          cookieBanner.style.transform = 'translateY(0)';
+          cookieBanner.style.opacity = '1';
+        }, 100);
+      }
+
+      // Ocultar banner de cookies con animación
+      function hideCookieBanner() {
+        cookieBanner.style.transform = 'translateY(100%)';
+        cookieBanner.style.opacity = '0';
+        setTimeout(() => {
+          cookieBanner.style.display = 'none';
+        }, 300);
+      }
+
+      // Aceptar todas las cookies
+      function acceptCookies() {
+        localStorage.setItem(COOKIE_CONSENT_KEY, 'accepted');
+        hideCookieBanner();
+        
+        // Inicializar servicios de análisis, tracking, personalización, etc.
+        console.log('✅ Todas las cookies aceptadas - Servicios completos activados');
+        
+        // Ejemplo: Google Analytics, Facebook Pixel, etc.
+        // gtag('consent', 'update', {
+        //   'analytics_storage': 'granted',
+        //   'ad_storage': 'granted',
+        //   'personalization_storage': 'granted'
+        // });
+        
+        // Mostrar notificación de éxito
+        showNotification('Cookies aceptadas correctamente', 'success');
+      }
+
+      // Solo cookies necesarias
+      function rejectCookies() {
+        localStorage.setItem(COOKIE_CONSENT_KEY, 'essential_only');
+        hideCookieBanner();
+        
+        console.log('🔒 Solo cookies esenciales - Funcionalidad básica habilitada');
+        
+        // Deshabilitar servicios de análisis y tracking
+        // gtag('consent', 'update', {
+        //   'analytics_storage': 'denied',
+        //   'ad_storage': 'denied',
+        //   'personalization_storage': 'denied'
+        // });
+        
+        // Mostrar notificación de privacidad
+        showNotification('Solo cookies esenciales habilitadas', 'info');
+      }
+
+      // Mostrar notificaciones compactas y profesionales
+      function showNotification(message, type) {
+        const notification = document.createElement('div');
+        
+        const isSuccess = type === 'success';
+        const icon = isSuccess ? '✓' : '🔒';
+        const textColor = isSuccess ? '#FFD166' : '#e6f0fb';
+        
+        notification.style.cssText = `
+          position: fixed;
+          top: 30px;
+          right: 30px;
+          background: linear-gradient(135deg, rgba(7,16,40,0.96), rgba(15,23,36,0.96));
+          color: ${textColor};
+          padding: 15px 20px;
+          border-radius: 10px;
+          border: 1px solid ${isSuccess ? 'rgba(255,209,102,0.4)' : 'rgba(159,179,200,0.3)'};
+          box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+          z-index: 10001;
+          font-weight: 500;
+          opacity: 0;
+          transform: translateY(-20px);
+          transition: all 0.3s ease;
+          max-width: 320px;
+          font-size: 0.9rem;
+          font-family: 'Montserrat', sans-serif;
+          backdrop-filter: blur(10px);
+        `;
+        
+        notification.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.1rem; opacity: 0.9;">${icon}</span>
+            <span style="line-height: 1.3;">${message}</span>
+          </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Animación de entrada
+        setTimeout(() => {
+          notification.style.opacity = '1';
+          notification.style.transform = 'translateY(0)';
+        }, 100);
+
+        // Animación de salida
+        setTimeout(() => {
+          notification.style.opacity = '0';
+          notification.style.transform = 'translateY(-20px)';
+          setTimeout(() => {
+            if (notification.parentNode) {
+              notification.remove();
+            }
+          }, 300);
+        }, 3000);
+      }
+
+      // Inicializar estilos del banner
+      cookieBanner.style.transform = 'translateY(100%)';
+      cookieBanner.style.opacity = '0';
+      cookieBanner.style.transition = 'all 0.3s ease';
+
+      // Elementos del modal
+      const cookiePolicyModal = document.getElementById('cookiePolicyModal');
+      const cookiePolicyLink = document.getElementById('cookiePolicyLink');
+      const closeCookiePolicy = document.getElementById('closeCookiePolicy');
+      const modalAcceptBtn = document.getElementById('modalAcceptCookies');
+      const modalRejectBtn = document.getElementById('modalRejectCookies');
+
+      // Funciones para el modal
+      function openCookiePolicy() {
+        cookiePolicyModal.style.display = 'block';
+        setTimeout(() => {
+          cookiePolicyModal.style.opacity = '1';
+        }, 10);
+      }
+
+      function closeCookiePolicyModal() {
+        cookiePolicyModal.style.opacity = '0';
+        setTimeout(() => {
+          cookiePolicyModal.style.display = 'none';
+        }, 300);
+      }
+
+      // Event listeners
+      acceptBtn.addEventListener('click', acceptCookies);
+      rejectBtn.addEventListener('click', rejectCookies);
+      
+      // Event listeners del modal
+      cookiePolicyLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        openCookiePolicy();
+      });
+      
+      closeCookiePolicy.addEventListener('click', closeCookiePolicyModal);
+      
+      modalAcceptBtn.addEventListener('click', () => {
+        acceptCookies();
+        closeCookiePolicyModal();
+      });
+      
+      modalRejectBtn.addEventListener('click', () => {
+        rejectCookies();
+        closeCookiePolicyModal();
+      });
+      
+      // Cerrar modal al hacer click fuera
+      cookiePolicyModal.addEventListener('click', (e) => {
+        if (e.target === cookiePolicyModal) {
+          closeCookiePolicyModal();
+        }
+      });
+      
+      // Cerrar modal con tecla Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && cookiePolicyModal.style.display === 'block') {
+          closeCookiePolicyModal();
+        }
+      });
+
+      // Inicializar estilos del modal
+      cookiePolicyModal.style.opacity = '0';
+      cookiePolicyModal.style.transition = 'opacity 0.3s ease';
+
+      // Verificar consentimiento al cargar la página
+      document.addEventListener('DOMContentLoaded', checkCookieConsent);
+
+      // Función pública para reset (para desarrollo/testing)
+      window.resetCookieConsent = function() {
+        localStorage.removeItem(COOKIE_CONSENT_KEY);
+        checkCookieConsent();
+      };
+    })();
+
+    // Sistema de traducción de idiomas
+    (function() {
+      const LANGUAGE_KEY = 'awsync_language';
+      
+      const languageSelector = document.getElementById('languageSelector');
+      const languagePanel = document.getElementById('languagePanel');
+      const languageList = document.getElementById('languageList');
+      const currentLang = document.getElementById('currentLang');
+      
+      if (!languageSelector || !languagePanel || !languageList || !currentLang) {
+        console.log('⚠️ Elementos del selector de idiomas no encontrados');
+        return;
+      }
+
+      // Lista completa de idiomas organizados por regiones
+      const languages = [
+        // Europa Occidental
+        { code: 'es', name: 'Español', flag: '🇪🇸', native: 'Español' },
+        { code: 'en', name: 'English', flag: '🇬🇧', native: 'English' },
+        { code: 'fr', name: 'French', flag: '🇫🇷', native: 'Français' },
+        { code: 'de', name: 'German', flag: '🇩🇪', native: 'Deutsch' },
+        { code: 'it', name: 'Italian', flag: '🇮🇹', native: 'Italiano' },
+        { code: 'pt', name: 'Portuguese', flag: '🇵🇹', native: 'Português' },
+        { code: 'nl', name: 'Dutch', flag: '🇳🇱', native: 'Nederlands' },
+        { code: 'sv', name: 'Swedish', flag: '🇸🇪', native: 'Svenska' },
+        { code: 'no', name: 'Norwegian', flag: '🇳🇴', native: 'Norsk' },
+        { code: 'da', name: 'Danish', flag: '🇩🇰', native: 'Dansk' },
+        { code: 'fi', name: 'Finnish', flag: '🇫🇮', native: 'Suomi' },
+        { code: 'is', name: 'Icelandic', flag: '🇮🇸', native: 'Íslenska' },
+        
+        // Europa Oriental
+        { code: 'ru', name: 'Russian', flag: '🇷🇺', native: 'Русский' },
+        { code: 'pl', name: 'Polish', flag: '🇵🇱', native: 'Polski' },
+        { code: 'cs', name: 'Czech', flag: '🇨🇿', native: 'Čeština' },
+        { code: 'sk', name: 'Slovak', flag: '🇸🇰', native: 'Slovenčina' },
+        { code: 'hu', name: 'Hungarian', flag: '🇭🇺', native: 'Magyar' },
+        { code: 'ro', name: 'Romanian', flag: '🇷🇴', native: 'Română' },
+        { code: 'bg', name: 'Bulgarian', flag: '🇧🇬', native: 'Български' },
+        { code: 'hr', name: 'Croatian', flag: '🇭🇷', native: 'Hrvatski' },
+        { code: 'sr', name: 'Serbian', flag: '🇷🇸', native: 'Српски' },
+        { code: 'sl', name: 'Slovenian', flag: '🇸🇮', native: 'Slovenščina' },
+        { code: 'et', name: 'Estonian', flag: '🇪🇪', native: 'Eesti' },
+        { code: 'lv', name: 'Latvian', flag: '🇱🇻', native: 'Latviešu' },
+        { code: 'lt', name: 'Lithuanian', flag: '🇱🇹', native: 'Lietuvių' },
+        { code: 'uk', name: 'Ukrainian', flag: '🇺🇦', native: 'Українська' },
+        
+        // Asia
+        { code: 'zh-CN', name: 'Chinese (Simplified)', flag: '🇨🇳', native: '简体中文' },
+        { code: 'zh-TW', name: 'Chinese (Traditional)', flag: '🇹🇼', native: '繁體中文' },
+        { code: 'ja', name: 'Japanese', flag: '🇯🇵', native: '日本語' },
+        { code: 'ko', name: 'Korean', flag: '🇰🇷', native: '한국어' },
+        { code: 'hi', name: 'Hindi', flag: '🇮🇳', native: 'हिन्दी' },
+        { code: 'th', name: 'Thai', flag: '🇹🇭', native: 'ไทย' },
+        { code: 'vi', name: 'Vietnamese', flag: '🇻🇳', native: 'Tiếng Việt' },
+        { code: 'id', name: 'Indonesian', flag: '🇮🇩', native: 'Bahasa Indonesia' },
+        { code: 'ms', name: 'Malay', flag: '🇲🇾', native: 'Bahasa Melayu' },
+        { code: 'tl', name: 'Filipino', flag: '🇵🇭', native: 'Filipino' },
+        
+        // Medio Oriente
+        { code: 'ar', name: 'Arabic', flag: '🇸🇦', native: 'العربية' },
+        { code: 'he', name: 'Hebrew', flag: '🇮🇱', native: 'עברית' },
+        { code: 'tr', name: 'Turkish', flag: '🇹🇷', native: 'Türkçe' },
+        { code: 'fa', name: 'Persian', flag: '🇮🇷', native: 'فارسی' },
+        
+        // África
+        { code: 'sw', name: 'Swahili', flag: '🇰🇪', native: 'Kiswahili' },
+        { code: 'af', name: 'Afrikaans', flag: '🇿🇦', native: 'Afrikaans' },
+        
+        // Américas
+        { code: 'pt-BR', name: 'Portuguese (Brazil)', flag: '🇧🇷', native: 'Português (Brasil)' },
+        
+        // Otros
+        { code: 'el', name: 'Greek', flag: '🇬🇷', native: 'Ελληνικά' },
+        { code: 'mt', name: 'Maltese', flag: '🇲🇹', native: 'Malti' },
+        { code: 'eu', name: 'Basque', flag: '🏴', native: 'Euskera' },
+        { code: 'ca', name: 'Catalan', flag: '🏴', native: 'Català' },
+        { code: 'gl', name: 'Galician', flag: '🏴', native: 'Galego' },
+        { code: 'cy', name: 'Welsh', flag: '🏴󠁧󠁢󠁷󠁬󠁳󠁿', native: 'Cymraeg' },
+        { code: 'ga', name: 'Irish', flag: '🇮🇪', native: 'Gaeilge' },
+        { code: 'eo', name: 'Esperanto', flag: '🌍', native: 'Esperanto' }
+      ];
+
+      function renderLanguageList() {
+        const regions = [
+          { name: 'Europa Occidental', codes: ['es', 'en', 'fr', 'de', 'it', 'pt', 'nl', 'sv', 'no', 'da', 'fi', 'is'] },
+          { name: 'Europa Oriental', codes: ['ru', 'pl', 'cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sr', 'sl', 'et', 'lv', 'lt', 'uk'] },
+          { name: 'Asia', codes: ['zh-CN', 'zh-TW', 'ja', 'ko', 'hi', 'th', 'vi', 'id', 'ms', 'tl'] },
+          { name: 'Medio Oriente', codes: ['ar', 'he', 'tr', 'fa'] },
+          { name: 'África', codes: ['sw', 'af'] },
+          { name: 'Américas', codes: ['pt-BR'] },
+          { name: 'Otros', codes: ['el', 'mt', 'eu', 'ca', 'gl', 'cy', 'ga', 'eo'] }
+        ];
+
+        languageList.innerHTML = '';
+
+        regions.forEach(region => {
+          const regionLangs = languages.filter(lang => region.codes.includes(lang.code));
+          if (regionLangs.length === 0) return;
+
+          // Header de región
+          const regionHeader = document.createElement('div');
+          regionHeader.style.cssText = 'padding: 8px 12px; margin-top: 8px; font-size: 0.75rem; font-weight: 600; color: #9fb3c8; text-transform: uppercase; border-bottom: 1px solid rgba(255,209,102,0.2);';
+          regionHeader.textContent = region.name;
+          languageList.appendChild(regionHeader);
+
+          // Idiomas de la región
+          regionLangs.forEach(lang => {
+            const langItem = document.createElement('button');
+            langItem.style.cssText = `
+              width: 100%; 
+              background: transparent; 
+              border: none; 
+              padding: 10px 12px; 
+              text-align: left; 
+              color: #e6f0fb; 
+              transition: all 0.2s ease; 
+              border-radius: 6px; 
+              margin: 2px 0;
+              font-family: 'Montserrat', sans-serif;
+              display: flex;
+              align-items: center;
+              gap: 12px;
+            `;
+            
+            langItem.innerHTML = `
+              <span style="font-size: 1.1rem; opacity: 0.9;">${lang.flag}</span>
+              <div style="flex: 1;">
+                <div style="font-size: 0.9rem; font-weight: 500; color: #e6f0fb;">${lang.name}</div>
+                <div style="font-size: 0.75rem; color: #9fb3c8; opacity: 0.8;">${lang.native}</div>
+              </div>
+            `;
+
+            langItem.onmouseover = () => {
+              langItem.style.background = 'rgba(255,209,102,0.1)';
+              langItem.style.borderLeft = '3px solid #FFD166';
+              langItem.style.paddingLeft = '9px';
+            };
+            
+            langItem.onmouseout = () => {
+              langItem.style.background = 'transparent';
+              langItem.style.borderLeft = 'none';
+              langItem.style.paddingLeft = '12px';
+            };
+
+            langItem.onclick = () => selectLanguage(lang);
+            languageList.appendChild(langItem);
+          });
+        });
+      }
+
+      function selectLanguage(selectedLang) {
+        // Guardar selección
+        localStorage.setItem(LANGUAGE_KEY, selectedLang.code);
+        
+        // Actualizar idioma actual
+        currentLang.textContent = selectedLang.code.toUpperCase();
+        
+        // Cerrar panel
+        closeLanguagePanel();
+        
+        // Mostrar notificación
+        showTranslationNotification(selectedLang.name);
+        
+        console.log('🌍 Traduciendo página a: ' + selectedLang.code);
+      }
+
+      function showTranslationNotification(langName) {
+        const notification = document.createElement('div');
+        notification.style.cssText = 
+          'position: fixed;' +
+          'top: 20px;' +
+          'right: 20px;' +
+          'background: linear-gradient(135deg, rgba(7,16,40,0.95), rgba(15,23,36,0.95));' +
+          'color: #e6f0fb;' +
+          'padding: 15px 20px;' +
+          'border-radius: 10px;' +
+          'border: 1px solid rgba(255,209,102,0.4);' +
+          'box-shadow: 0 8px 25px rgba(0,0,0,0.4);' +
+          'z-index: 10003;' +
+          'opacity: 0;' +
+          'transform: translateY(-20px);' +
+          'transition: all 0.3s ease;' +
+          'max-width: 300px;' +
+          'font-family: Montserrat, sans-serif;' +
+          'backdrop-filter: blur(10px);';
+        
+        notification.innerHTML = 
+          '<div style="display: flex; align-items: center; gap: 10px;">' +
+            '<span style="font-size: 1.2rem;">🌍</span>' +
+            '<div>' +
+              '<div style="font-weight: 600; color: #FFD166; font-size: 0.9rem;">Traduciendo a ' + langName + '</div>' +
+              '<div style="font-size: 0.8rem; color: #9fb3c8; margin-top: 2px;">Aplicando cambios...</div>' +
+            '</div>' +
+          '</div>';
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+          notification.style.opacity = '1';
+          notification.style.transform = 'translateY(0)';
+        }, 100);
+
+        setTimeout(() => {
+          notification.style.opacity = '0';
+          notification.style.transform = 'translateY(-20px)';
+          setTimeout(() => {
+            if (notification.parentNode) {
+              notification.remove();
+            }
+          }, 300);
+        }, 2500);
+      }
+
+      // Abrir/cerrar panel
+      function toggleLanguagePanel() {
+        const isVisible = languagePanel.style.display === 'block';
+        if (isVisible) {
+          closeLanguagePanel();
+        } else {
+          openLanguagePanel();
+        }
+      }
+
+      function openLanguagePanel() {
+        languagePanel.style.display = 'block';
+        setTimeout(() => {
+          languagePanel.style.opacity = '1';
+          languagePanel.style.transform = 'translateY(0)';
+        }, 10);
+      }
+
+      function closeLanguagePanel() {
+        languagePanel.style.opacity = '0';
+        languagePanel.style.transform = 'translateY(-10px)';
+        setTimeout(() => {
+          languagePanel.style.display = 'none';
+        }, 200);
+      }
+
+      // Event listeners
+      languageSelector.addEventListener('click', toggleLanguagePanel);
+      
+      // Cerrar al hacer click fuera
+      document.addEventListener('click', (e) => {
+        if (!languageSelector.contains(e.target) && !languagePanel.contains(e.target)) {
+          closeLanguagePanel();
+        }
+      });
+
+      // Inicializar
+      languagePanel.style.opacity = '0';
+      languagePanel.style.transform = 'translateY(-10px)';
+      languagePanel.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+      
+      renderLanguageList();
+      
+      // Cargar idioma guardado
+      const savedLang = localStorage.getItem(LANGUAGE_KEY);
+      if (savedLang) {
+        const lang = languages.find(l => l.code === savedLang);
+        if (lang) {
+          currentLang.textContent = lang.code.toUpperCase();
+        }
+      }
+      
+      console.log('🌍 Sistema de traducción inicializado - ¡' + languages.length + ' idiomas disponibles!');
+    })();
+  </script>
+</html>

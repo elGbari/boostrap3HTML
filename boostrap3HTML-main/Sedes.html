@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sedes y Fábricas — AW Sync</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --bg-top:#071028;
+        --bg-bottom:#0f1724;
+        --card-bg:rgba(255,255,255,0.02);
+        --accent:#FFD166;
+        --muted:#9fb3c8;
+      }
+
+      body{
+        font-family:'Montserrat',sans-serif;
+        background:linear-gradient(180deg,var(--bg-top) 0%,var(--bg-bottom) 100%);
+        color:#e6f0fb;
+        min-height:100vh;
+        -webkit-font-smoothing:antialiased;
+      }
+
+      .navbar{
+        background:linear-gradient(90deg,rgba(7,18,40,0.92),rgba(12,20,33,0.92));
+        box-shadow:0 8px 30px rgba(2,6,23,0.6);
+      }
+      .navbar-brand{
+        font-family:'Playfair Display',serif;
+        font-weight:700;
+        color:var(--accent)!important;
+        display:flex;align-items:center;
+      }
+      .navbar-brand img{height:44px;margin-right:10px;border-radius:6px;box-shadow:0 6px 20px rgba(0,0,0,0.45);}
+
+      h1,h2,h3,h4{font-family:'Playfair Display',serif;}
+      .section-title{color:var(--accent);margin-top:30px;font-size:2.8rem;font-weight:700;}
+      .section-subtitle{color:var(--muted);font-size:1.15rem;line-height:1.8;}
+
+      /* Hero Section */
+      .hero-section{
+        background:linear-gradient(135deg, rgba(255,209,102,0.15), rgba(255,209,102,0.05));
+        border:2px solid rgba(255,209,102,0.3);
+        border-radius:24px;
+        padding:60px 40px;
+        margin:40px 0;
+        text-align:center;
+        box-shadow:0 15px 50px rgba(0,0,0,0.4);
+      }
+
+      /* Stats Section */
+      .stats-container{
+        display:grid;
+        grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+        gap:25px;
+        margin:40px 0;
+      }
+      .stat-card{
+        background:linear-gradient(135deg, rgba(255,209,102,0.12), rgba(255,209,102,0.06));
+        border:2px solid rgba(255,209,102,0.3);
+        border-radius:16px;
+        padding:30px;
+        text-align:center;
+        transition:all 0.3s ease;
+        box-shadow:0 8px 25px rgba(0,0,0,0.3);
+      }
+      .stat-card:hover{
+        transform:translateY(-8px);
+        box-shadow:0 15px 40px rgba(255,209,102,0.3);
+        border-color:rgba(255,209,102,0.5);
+      }
+      .stat-number{
+        font-size:3rem;
+        font-weight:700;
+        color:#FFD166;
+        font-family:'Playfair Display',serif;
+        margin-bottom:10px;
+      }
+      .stat-label{
+        font-size:1.1rem;
+        color:#9fb3c8;
+        font-weight:600;
+      }
+
+      /* Location Cards */
+      .location-card{
+        background:linear-gradient(135deg, rgba(255,209,102,0.08), rgba(255,209,102,0.03));
+        border:1.5px solid rgba(255,209,102,0.25);
+        border-radius:18px;
+        overflow:hidden;
+        transition:all 0.4s ease;
+        margin-bottom:30px;
+        box-shadow:0 10px 35px rgba(0,0,0,0.3);
+      }
+      .location-card:hover{
+        transform:translateY(-12px);
+        box-shadow:0 20px 50px rgba(255,209,102,0.25);
+        border-color:rgba(255,209,102,0.5);
+      }
+      .location-img{
+        width:100%;
+        height:280px;
+        object-fit:cover;
+        transition:transform 0.4s ease;
+      }
+      .location-card:hover .location-img{
+        transform:scale(1.08);
+      }
+      .location-body{
+        padding:30px;
+      }
+      .location-title{
+        color:#FFD166;
+        font-size:1.8rem;
+        font-weight:700;
+        margin-bottom:10px;
+      }
+      .location-type{
+        display:inline-block;
+        background:rgba(255,209,102,0.2);
+        color:#FFD166;
+        padding:6px 16px;
+        border-radius:20px;
+        font-size:0.85rem;
+        font-weight:600;
+        margin-bottom:15px;
+        border:1px solid rgba(255,209,102,0.4);
+      }
+      .location-address{
+        color:#9fb3c8;
+        font-size:1rem;
+        margin-bottom:15px;
+        display:flex;
+        align-items:center;
+        gap:10px;
+      }
+      .location-description{
+        color:#e6f0fb;
+        line-height:1.7;
+        font-size:1rem;
+      }
+
+      /* Section Headers */
+      .section-header{
+        text-align:center;
+        margin:60px 0 40px;
+      }
+      .section-header h2{
+        color:#FFD166;
+        font-size:2.5rem;
+        margin-bottom:15px;
+      }
+      .section-divider{
+        width:80px;
+        height:3px;
+        background:linear-gradient(90deg, transparent, #FFD166, transparent);
+        margin:0 auto 20px;
+      }
+
+      footer{
+        border-top:1px solid rgba(255,209,102,0.1);
+        color:var(--muted);
+        padding:30px 0;
+        text-align:center;
+        margin-top:80px;
+      }
+
+      @media (max-width:767px){
+        .section-title{font-size:2rem;}
+        .stat-number{font-size:2.2rem;}
+        .location-img{height:220px;}
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img src="img/logo.jpg" alt="AW Sync Logo"> AW Sync
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="Proyectos.html">Proyectos</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Sedes.html">Sedes</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="container">
+      <div class="hero-section">
+        <h1 style="color:#FFD166;font-size:3.5rem;margin-bottom:20px;">Sedes y Fábricas Globales</h1>
+        <div class="section-divider"></div>
+        <p style="color:#e6f0fb;font-size:1.2rem;line-height:1.9;max-width:900px;margin:0 auto;">
+          AW Sync opera a nivel global con una red estratégica de instalaciones distribuidas por Europa. 
+          Nuestra infraestructura combina innovación automotriz y desarrollo tecnológico de vanguardia, 
+          consolidándonos como líderes en transformación digital y excelencia en ingeniería.
+        </p>
+      </div>
+
+      <!-- Stats Section -->
+      <div class="stats-container">
+        <div class="stat-card">
+          <div class="stat-number">€55B</div>
+          <div class="stat-label">Valoración Total</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">€20B</div>
+          <div class="stat-label">Inversión Tecnológica</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">€35B</div>
+          <div class="stat-label">Sector Automotriz</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">12+</div>
+          <div class="stat-label">Sedes en Europa</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sede Principal -->
+    <section class="container">
+      <div class="section-header">
+        <h2>🏢 Sede Principal</h2>
+        <div class="section-divider"></div>
+        <p style="color:#9fb3c8;font-size:1.1rem;">Centro neurálgico de operaciones globales</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1562883676-8c7feb83f09b?w=1200&h=800&fit=crop&q=80" class="location-img" alt="Sede Barcelona">
+            <div class="location-body">
+              <h3 class="location-title">AW Sync Headquarters — Barcelona</h3>
+              <span class="location-type">Sede Central & Centro I+D</span>
+              <div class="location-address">
+                <span>📍</span>
+                <span>Av. Diagonal 640, 08017 Barcelona, Catalunya, España</span>
+              </div>
+              <p class="location-description">
+                Nuestra sede principal en el corazón de Barcelona alberga el centro de innovación y desarrollo tecnológico más avanzado de Europa. 
+                Con más de 45,000 m² de instalaciones, este complejo integra oficinas ejecutivas, laboratorios de investigación, 
+                centros de diseño automotriz y espacios colaborativos de última generación. Desde aquí se coordinan todas las operaciones 
+                globales y se desarrollan las tecnologías que definirán el futuro de la movilidad sostenible y la transformación digital educativa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fábricas Automotrices -->
+    <section class="container">
+      <div class="section-header">
+        <h2>🏭 Fábricas Automotrices</h2>
+        <div class="section-divider"></div>
+        <p style="color:#9fb3c8;font-size:1.1rem;">Centros de producción de vehículos de alta performance</p>
+      </div>
+
+      <div class="row">
+        <!-- Stuttgart -->
+        <div class="col-md-6">
+          <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1200&h=800&fit=crop&q=80" class="location-img" alt="Fábrica Stuttgart">
+            <div class="location-body">
+              <h3 class="location-title">AW Sync Motorsport — Stuttgart</h3>
+              <span class="location-type">Fábrica Automotriz</span>
+              <div class="location-address">
+                <span>📍</span>
+                <span>Porscheplatz 1, 70435 Stuttgart, Alemania</span>
+              </div>
+              <p class="location-description">
+                Centro de excelencia en ingeniería deportiva donde se fabrican nuestros vehículos de alta performance. 
+                Equipada con tecnología de ensamblaje robotizado y túneles de viento profesionales para optimización aerodinámica. 
+                Producción anual: 8,500 unidades premium.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Maranello -->
+        <div class="col-md-6">
+          <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1200&h=800&fit=crop&q=80" class="location-img" alt="Fábrica Maranello">
+            <div class="location-body">
+              <h3 class="location-title">AW Sync Racing Division — Maranello</h3>
+              <span class="location-type">Fábrica Automotriz</span>
+              <div class="location-address">
+                <span>📍</span>
+                <span>Via Abetone Inferiore 4, 41053 Maranello, Italia</span>
+              </div>
+              <p class="location-description">
+                Especializada en superdeportivos y tecnología de competición. Instalaciones que incluyen pista de pruebas privada 
+                de 3.2 km y simuladores de conducción profesional. Centro de innovación en materiales compuestos y fibra de carbono. 
+                Producción anual: 4,200 unidades exclusivas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Múnich -->
+        <div class="col-md-6">
+          <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=800&fit=crop&q=80" class="location-img" alt="Fábrica Múnich">
+            <div class="location-body">
+              <h3 class="location-title">AW Sync Performance — Múnich</h3>
+              <span class="location-type">Fábrica Automotriz</span>
+              <div class="location-address">
+                <span>📍</span>
+                <span>Petuelring 130, 80809 Múnich, Alemania</span>
+              </div>
+              <p class="location-description">
+                Fábrica dedicada a vehículos de lujo deportivos con enfoque en innovación eléctrica e híbrida. 
+                Integra líneas de producción flexible y personalización exclusiva para clientes VIP. 
+                Centro de desarrollo de baterías de alto rendimiento y sistemas de propulsión avanzada. 
+                Producción anual: 12,000 unidades.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Goodwood -->
+        <div class="col-md-6">
+          <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&h=800&fit=crop&q=80" class="location-img" alt="Fábrica Goodwood">
+            <div class="location-body">
+              <h3 class="location-title">AW Sync Luxury Collection — Goodwood</h3>
+              <span class="location-type">Fábrica Automotriz</span>
+              <div class="location-address">
+                <span>📍</span>
+                <span>The Drive, Goodwood, West Sussex PO18 0SH, Reino Unido</span>
+              </div>
+              <p class="location-description">
+                Manufactura artesanal de vehículos ultra-premium con acabados completamente personalizados. 
+                Cada unidad se ensambla a mano por maestros artesanos especializados. Instalaciones que incluyen 
+                talleres de carpintería, tapicería y pintura custom. Producción limitada: 850 unidades anuales.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Centros Tecnológicos -->
+    <section class="container">
+      <div class="section-header">
+        <h2>💻 Centros Tecnológicos</h2>
+        <div class="section-divider"></div>
+        <p style="color:#9fb3c8;font-size:1.1rem;">Desarrollo de software, IA y soluciones digitales</p>
+      </div>
+
+      <div class="row">
+        <!-- Berlín -->
+        <div class="col-md-6">
+          <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1587330979470-3595ac045ab0?w=1200&h=800&fit=crop&q=80" class="location-img" alt="Centro Berlín">
+            <div class="location-body">
+              <h3 class="location-title">AW Sync Tech Hub — Berlín</h3>
+              <span class="location-type">Centro Tecnológico</span>
+              <div class="location-address">
+                <span>📍</span>
+                <span>Unter den Linden 77, 10117 Berlín, Alemania</span>
+              </div>
+              <p class="location-description">
+                Epicentro de innovación en inteligencia artificial, machine learning y desarrollo de software educativo. 
+                Más de 1,200 ingenieros trabajan en soluciones cloud, plataformas IoT y sistemas de gestión empresarial. 
+                Laboratorios de ciberseguridad y centros de datos de última generación.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ámsterdam -->
+        <div class="col-md-6">
+          <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=1200&h=800&fit=crop&q=80" class="location-img" alt="Centro Ámsterdam">
+            <div class="location-body">
+              <h3 class="location-title">AW Sync Cloud Campus — Ámsterdam</h3>
+              <span class="location-type">Centro Tecnológico</span>
+              <div class="location-address">
+                <span>📍</span>
+                <span>Zuidas District, 1082 Amsterdam, Países Bajos</span>
+              </div>
+              <p class="location-description">
+                Dedicado al proyecto CloudMatrix y desarrollo de infraestructura tecnológica para educación. 
+                Centro de investigación en realidad virtual, augmented reality y plataformas colaborativas. 
+                Hub de innovación sostenible con certificación LEED Platinum y energía 100% renovable.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- París -->
+        <div class="col-md-6">
+          <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&h=800&fit=crop" class="location-img" alt="Centro París">
+            <div class="location-body">
+              <h3 class="location-title">AW Sync Innovation Lab — París</h3>
+              <span class="location-type">Centro Tecnológico</span>
+              <div class="location-address">
+                <span>📍</span>
+                <span>La Défense, 92400 Courbevoie, Francia</span>
+              </div>
+              <p class="location-description">
+                Centro de diseño UX/UI y desarrollo de experiencias digitales. Equipos multidisciplinares especializados 
+                en interfaces intuitivas, accesibilidad digital y transformación de procesos educativos. 
+                Laboratorio de prototipado rápido y testing de usuarios con tecnologías emergentes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Estocolmo -->
+        <div class="col-md-6">
+          <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1508189860359-777d945909ef?w=1200&h=800&fit=crop&q=80" class="location-img" alt="Centro Estocolmo">
+            <div class="location-body">
+              <h3 class="location-title">AW Sync Nordic Tech — Estocolmo</h3>
+              <span class="location-type">Centro Tecnológico</span>
+              <div class="location-address">
+                <span>📍</span>
+                <span>Sveavägen 159, 113 46 Estocolmo, Suecia</span>
+              </div>
+              <p class="location-description">
+                Especializado en tecnologías blockchain, sistemas distribuidos y arquitecturas escalables. 
+                Centro de excelencia en desarrollo ágil y metodologías DevOps. Colaboraciones con universidades 
+                nórdicas en investigación de computación cuántica y algoritmos avanzados.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Oficinas Comerciales -->
+    <section class="container">
+      <div class="section-header">
+        <h2>🌍 Oficinas Comerciales</h2>
+        <div class="section-divider"></div>
+        <p style="color:#9fb3c8;font-size:1.1rem;">Red de ventas y atención al cliente en Europa</p>
+      </div>
+
+      <div class="row">
+        <!-- Madrid -->
+        <div class="col-md-6 col-lg-4">
+          <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&h=800&fit=crop&q=80" class="location-img" alt="Oficina Madrid">
+            <div class="location-body">
+              <h3 class="location-title">AW Sync Madrid</h3>
+              <span class="location-type">Oficina Comercial</span>
+              <div class="location-address">
+                <span>📍</span>
+                <span>Paseo de la Castellana 259, Madrid</span>
+              </div>
+              <p class="location-description">
+                Hub comercial para el mercado ibérico con showroom exclusivo de 2,500 m² y centro de experiencia del cliente.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milán -->
+        <div class="col-md-6 col-lg-4">
+          <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1513581166391-887a96ddeafd?w=1200&h=800&fit=crop&q=80" class="location-img" alt="Oficina Milán">
+            <div class="location-body">
+              <h3 class="location-title">AW Sync Milano</h3>
+              <span class="location-type">Oficina Comercial</span>
+              <div class="location-address">
+                <span>📍</span>
+                <span>Corso Como 15, 20154 Milano, Italia</span>
+              </div>
+              <p class="location-description">
+                Centro de diseño y ventas premium en el distrito de moda milanés, especializado en personalización exclusiva.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zúrich -->
+        <div class="col-md-6 col-lg-4">
+          <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1609856878074-cf31e21ccb6b?w=1200&h=800&fit=crop&q=80" class="location-img" alt="Oficina Zúrich">
+            <div class="location-body">
+              <h3 class="location-title">AW Sync Zürich</h3>
+              <span class="location-type">Oficina Comercial</span>
+              <div class="location-address">
+                <span>📍</span>
+                <span>Bahnhofstrasse 88, 8001 Zürich, Suiza</span>
+              </div>
+              <p class="location-description">
+                Oficina boutique para clientes VIP en el corazón financiero de Europa, con servicios de concierge personalizado.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p style="color:#FFD166;font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:10px;">AW Sync Global</p>
+        <p style="color:#9fb3c8;margin:0;">© 2025 AW Sync — Innovación sin fronteras</p>
+        <p style="color:#9fb3c8;font-size:0.9rem;margin-top:10px;">
+          <a href="index.html" style="color:#FFD166;text-decoration:none;margin:0 15px;">Inicio</a>
+          <a href="Proyectos.html" style="color:#FFD166;text-decoration:none;margin:0 15px;">Proyectos</a>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal" style="color:#FFD166;text-decoration:none;margin:0 15px;">Contacto</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Modal de Contacto -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content" style="background:linear-gradient(135deg, #071028, #0f1724);border:2px solid rgba(255,209,102,0.3);">
+          <div class="modal-header border-0" style="border-bottom:1px solid rgba(255,209,102,0.2) !important;">
+            <h3 class="modal-title" id="contactModalLabel" style="color:#FFD166;font-family:'Playfair Display',serif;font-size:2rem;">Contacto</h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar" style="filter:brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(5deg);"></button>
+          </div>
+          <div class="modal-body p-4">
+            <p style="color:#9fb3c8;font-size:1.1rem;margin-bottom:30px;">Envíanos un mensaje y nos pondremos en contacto contigo lo antes posible.</p>
+            
+            <form action="https://formspree.io/f/myzbqboa" method="POST">
+              <div class="mb-4">
+                <label for="contactEmail" class="form-label" style="color:#FFD166;font-weight:600;font-size:1.1rem;">Tu correo electrónico:</label>
+                <input type="email" name="email" class="form-control" id="contactEmail" required 
+                       style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,209,102,0.3);color:#e6f0fb;padding:12px 16px;border-radius:8px;font-size:1rem;"
+                       onfocus="this.style.borderColor='rgba(255,209,102,0.6)';this.style.boxShadow='0 0 10px rgba(255,209,102,0.2)';"
+                       onblur="this.style.borderColor='rgba(255,209,102,0.3)';this.style.boxShadow='none';">
+              </div>
+              
+              <div class="mb-4">
+                <label for="contactMessage" class="form-label" style="color:#FFD166;font-weight:600;font-size:1.1rem;">Tu mensaje:</label>
+                <textarea name="message" class="form-control" id="contactMessage" rows="5" required
+                          style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,209,102,0.3);color:#e6f0fb;padding:12px 16px;border-radius:8px;font-size:1rem;resize:vertical;"
+                          onfocus="this.style.borderColor='rgba(255,209,102,0.6)';this.style.boxShadow='0 0 10px rgba(255,209,102,0.2)';"
+                          onblur="this.style.borderColor='rgba(255,209,102,0.3)';this.style.boxShadow='none';"></textarea>
+              </div>
+              
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p style="color:#9fb3c8;margin:0;font-size:0.9rem;">También puedes contactarnos por:</p>
+                  <a href="https://www.instagram.com/awsyncgroup/" target="_blank" rel="noopener noreferrer" 
+                     style="color:#FFD166;text-decoration:none;font-weight:600;">
+                    Instagram: @awsyncgroup
+                  </a>
+                </div>
+                <button type="submit" class="btn btn-primary" style="padding:12px 40px;font-size:1.1rem;font-weight:600;">Enviar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

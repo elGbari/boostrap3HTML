@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AW Sync CloudMatrix - Innovación Educativa y Tecnológica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-black: #000000;
+            --secondary-black: #1A1A1A;
+            --tertiary-black: #2D2D2D;
+            --pure-white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --light-gray: #E8E9EA;
+            --medium-gray: #6C757D;
+            --dark-gray: #495057;
+            --card-bg: #FFFFFF;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-medium: rgba(0, 0, 0, 0.15);
+            --shadow-heavy: rgba(0, 0, 0, 0.25);
+            --accent-silver: #C0C0C0;
+            --accent-platinum: #E5E4E2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--pure-white);
+            color: var(--primary-black);
+            line-height: 1.7;
+            overflow-x: hidden;
+            letter-spacing: 0.3px;
+        }
+
+        /* Navegación */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--light-gray);
+            transition: all 0.4s ease;
+            box-shadow: 0 2px 20px var(--shadow-light);
+        }
+
+        .navbar-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 2rem;
+            color: var(--primary-black) !important;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            color: var(--dark-gray) !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-black) !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, 
+                var(--off-white) 0%, 
+                var(--pure-white) 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M 80 0 L 0 0 0 80" fill="none" stroke="%23000000" stroke-width="0.3" opacity="0.03"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 300;
+            color: var(--primary-black);
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            letter-spacing: 2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 3rem;
+            max-width: 650px;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            background: var(--primary-black);
+            border: 2px solid var(--primary-black);
+            padding: 18px 45px;
+            border-radius: 0;
+            color: var(--pure-white);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        .cta-button:hover {
+            background: var(--pure-white);
+            color: var(--primary-black);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow-medium);
+        }
+
+        /* Secciones */
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--primary-black);
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto 5rem;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        /* Cards de servicios */
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--light-gray);
+            border-radius: 0;
+            padding: 50px 40px;
+            text-align: center;
+            transition: all 0.4s ease;
+            height: 100%;
+            box-shadow: 0 5px 20px var(--shadow-light);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--medium-gray);
+            box-shadow: 0 15px 40px var(--shadow-medium);
+        }
+
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            background: var(--primary-black);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: var(--pure-white);
+            margin: 0 auto 2rem;
+        }
+
+        .service-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: var(--primary-black);
+            letter-spacing: 1px;
+        }
+
+        .service-description {
+            color: var(--dark-gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Stats */
+        .stats {
+            background: var(--primary-black);
+            border-radius: 0;
+            padding: 80px 60px;
+            margin: 120px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: var(--pure-white);
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        /* About section */
+        .about-content {
+            background: var(--card-bg);
+            border-radius: 0;
+            padding: 60px;
+            border: 1px solid var(--light-gray);
+            box-shadow: 0 10px 30px var(--shadow-light);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.9;
+            margin-bottom: 2.5rem;
+        }
+
+        .highlight {
+            color: var(--primary-black);
+            font-weight: 600;
+        }
+
+        /* APRENDEMAS Section */
+        .aprendemas {
+            background: var(--off-white);
+            border-radius: 0;
+            padding: 80px 60px;
+            margin: 120px 0;
+            border: 2px solid var(--light-gray);
+        }
+
+        .aprendemas-logo {
+            width: 120px;
+            height: 120px;
+            background: var(--primary-black);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--pure-white);
+            margin: 0 auto 2rem;
+            font-weight: 400;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-red), transparent);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(196, 42, 42, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-black);
+            padding: 80px 0 40px;
+            border-top: none;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h5 {
+            color: var(--pure-white);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--accent-silver);
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--pure-white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: transparent;
+            border: 1px solid var(--accent-silver);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-silver);
+            transition: all 0.4s ease;
+        }
+
+        .social-link:hover {
+            background: var(--pure-white);
+            color: var(--primary-black);
+            transform: translateY(-3px);
+            border-color: var(--pure-white);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 80vh;
+                text-align: center;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start;
+                padding-left: 50px;
+            }
+            
+            .timeline-content {
+                width: 100%;
+            }
+            
+            .timeline-dot {
+                left: 20px;
+            }
+            
+            .about-content,
+            .aprendemas {
+                padding: 30px;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Efectos de parallax suaves */
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navegación -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                AW Sync CloudMatrix
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#aprendemas">APRENDEMAS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="hero-content">
+                        <h1>CloudMatrix</h1>
+                        <p class="hero-subtitle">
+                            El objetivo principal de este proyecto es expandir el alcance de AW Sync más allá del sector automotriz. 
+                            Exploramos nuevas oportunidades en el ámbito educativo para contribuir al desarrollo y modernización 
+                            de institutos y centros educativos. A través de la implementación de soluciones innovadoras adaptadas 
+                            a las necesidades específicas de cada institución, optimizamos recursos para mejorar la calidad del 
+                            proceso educativo y facilitar un entorno óptimo para el aprendizaje y la gestión del centro.
+                        </p>
+                        <a href="#proyecto" class="cta-button">
+                            Explorar Proyecto
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <i class="fas fa-graduation-cap" style="font-size: 12rem; color: rgba(0, 0, 0, 0.05);"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estadísticas -->
+    <div class="container">
+        <div class="stats animate-on-scroll">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Centros Educativos</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Años Experiencia</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Innovación</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">01</div>
+                        <div class="stat-label">CloudMatrix</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Proyecto CloudMatrix -->
+    <section id="proyecto" class="section">
+        <div class="container">
+            <h2 class="section-title">Proyecto CloudMatrix</h2>
+            <p class="section-subtitle">
+                Transformando la educación a través de la innovación tecnológica y la excelencia operativa
+            </p>
+            
+            <div class="about-content animate-on-scroll">
+                <p class="about-text">
+                    <strong>AW Sync CloudMatrix</strong> representa nuestra evolución estratégica más ambiciosa: expandir nuestro alcance 
+                    más allá del sector automotriz hacia el ámbito educativo. Con décadas de experiencia en innovación y gestión 
+                    empresarial, ahora dirigimos nuestra expertise hacia la transformación de institutos y centros educativos.
+                </p>
+                
+                <p class="about-text">
+                    Nuestro enfoque se centra en la <strong>implementación de soluciones innovadoras</strong> que se adaptan 
+                    meticulosamente a las necesidades específicas de cada institución educativa. Mediante análisis profundo 
+                    y tecnología de vanguardia, optimizamos recursos existentes para crear ecosistemas educativos más eficientes.
+                </p>
+                
+                <p class="about-text">
+                    El objetivo principal es <strong>mejorar la calidad del proceso educativo</strong> mientras facilitamos 
+                    un entorno óptimo tanto para el aprendizaje estudiantil como para la gestión administrativa del centro. 
+                    CloudMatrix no es solo tecnología; es la reinvención integral de la experiencia educativa.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="services" class="section" style="background: rgba(196, 42, 42, 0.02);">
+        <div class="container">
+            <h2 class="section-title">Nuestros <span class="highlight">Servicios</span></h2>
+            <p class="section-subtitle">
+                Soluciones integrales que combinan experiencia automotriz con innovación tecnológica
+            </p>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3 class="service-title">Sistemas Educativos</h3>
+                        <p class="service-description">
+                            Plataformas integrales de gestión educativa que optimizan procesos administrativos 
+                            y mejoran la experiencia de aprendizaje en centros educativos.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3 class="service-title">Infraestructura Cloud</h3>
+                        <p class="service-description">
+                            Soluciones en la nube robustas y escalables que garantizan accesibilidad, 
+                            seguridad y continuidad operativa para instituciones educativas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-icon">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h3 class="service-title">Gestión Integral</h3>
+                        <p class="service-description">
+                            Sistemas de gestión administrativa que optimizan la operación diaria 
+                            de centros educativos, desde matriculación hasta seguimiento académico.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-icon">
+                            <i class="fas fa-analytics"></i>
+                        </div>
+                        <h3 class="service-title">Análisis de Datos</h3>
+                        <p class="service-description">
+                            Herramientas analíticas avanzadas que proporcionan insights valiosos 
+                            para la toma de decisiones estratégicas en entornos educativos.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="service-title">Aplicaciones Móviles</h3>
+                        <p class="service-description">
+                            Desarrollo de aplicaciones móviles intuitivas que conectan estudiantes, 
+                            profesores y administradores en un ecosistema digital integrado.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="service-title">Seguridad Digital</h3>
+                        <p class="service-description">
+                            Protocolos de seguridad de nivel empresarial que salvaguardan 
+                            la información sensible y garantizan la privacidad de datos educativos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APRENDEMAS Section -->
+    <section id="aprendemas" class="section">
+        <div class="container">
+            <div class="aprendemas animate-on-scroll">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="aprendemas-logo">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h2 class="section-title text-start mb-4">
+                            Proyecto <span class="highlight">APRENDEMAS</span>
+                        </h2>
+                        <p class="about-text">
+                            Una institución educativa española nos ha brindado una <span class="highlight">oportunidad única</span> 
+                            de colaboración para la iniciación de este innovador proyecto educativo-tecnológico.
+                        </p>
+                        <p class="about-text">
+                            Este centro educativo requiere de innovación tecnológica que está completamente 
+                            <span class="highlight">a nuestro alcance y disposición</span>, permitiéndonos cumplir 
+                            con los ideales y principios de la educación moderna y la tecnología avanzada.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-content">
+                                    <h4 style="color: var(--primary-red); margin-bottom: 1rem;">
+                                        <i class="fas fa-search me-2"></i>Evaluación
+                                    </h4>
+                                    <p>Análisis de múltiples propuestas de centros educativos, institutos y universidades.</p>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-content">
+                                    <h4 style="color: var(--accent-gold); margin-bottom: 1rem;">
+                                        <i class="fas fa-handshake me-2"></i>Selección
+                                    </h4>
+                                    <p>Decisión estratégica por criterio propio de colaborar con APRENDEMAS.</p>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-content">
+                                    <h4 style="color: var(--success-green); margin-bottom: 1rem;">
+                                        <i class="fas fa-rocket me-2"></i>Implementación
+                                    </h4>
+                                    <p>Negociaciones exitosas y puesta en marcha del proyecto educativo-tecnológico.</p>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-5">
+                    <div class="col-12 text-center">
+                        <h3 style="color: var(--accent-gold); margin-bottom: 2rem;">
+                            <i class="fas fa-star me-2"></i>
+                            Compromiso con la Excelencia Educativa
+                        </h3>
+                        <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto;">
+                            La colaboración con APRENDEMAS representa nuestro compromiso firme con la innovación educativa, 
+                            aportando nuestra experiencia tecnológica y capacidad de inversión para transformar 
+                            la educación española hacia el futuro digital.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h5>AW Sync CloudMatrix</h5>
+                    <p>Transformación digital del sector educativo a través de soluciones tecnológicas innovadoras.</p>
+                    <p>Comprometidos con la excelencia educativa y la modernización institucional.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h5>
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        Ubicación
+                    </h5>
+                    <p>Sede Central - Europa</p>
+                    <p>Múltiples oficinas en:</p>
+                    <a href="#">España</a>
+                    <a href="#">Francia</a>
+                    <a href="#">Alemania</a>
+                    <a href="#">Italia</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h5>Servicios CloudMatrix</h5>
+                    <a href="#services">Sistemas Educativos</a>
+                    <a href="#services">Infraestructura Cloud</a>
+                    <a href="#services">Gestión Integral</a>
+                    <a href="#services">Análisis de Datos</a>
+                    <a href="#services">Aplicaciones Móviles</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h5>Contacto</h5>
+                    <p>+34 900 000 000</p>
+                    <p>cloudmatrix@awsync.eu</p>
+                    <p>info@awsync.eu</p>
+                    <p>Sede Central - Madrid, España</p>
+                </div>
+            </div>
+            
+            <div class="text-center pt-5" style="border-top: 1px solid var(--accent-silver);">
+                <p style="color: var(--accent-silver); margin: 0; font-size: 0.9rem; letter-spacing: 1px;">
+                    © 2025 AW Sync CloudMatrix - Transformación Digital Educativa. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript personalizado -->
+    <script>
+        // Smooth scrolling para enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animación de elementos al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos para animación
+        document.querySelectorAll('.service-card, .stats, .about-content, .aprendemas').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Efecto de transparencia en navbar al hacer scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(15, 20, 25, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(15, 20, 25, 0.95)';
+            }
+        });
+
+        // Counter animation para las estadísticas
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                if (target.includes('+')) {
+                    const num = parseInt(target);
+                    let count = 0;
+                    const increment = num / 100;
+                    const timer = setInterval(() => {
+                        count += increment;
+                        if (count >= num) {
+                            counter.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(count) + '+';
+                        }
+                    }, 30);
+                }
+            });
+        }
+
+        // Activar animación de contadores cuando se ve la sección de estadísticas
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Preloader simple
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
